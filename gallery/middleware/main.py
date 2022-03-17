@@ -1,6 +1,7 @@
 from django.utils.deprecation import MiddlewareMixin
 from django.http import HttpResponseRedirect,HttpResponse,Http404
 from django.urls import reverse
+from urllib.parse import quote_plus
 
 class LoginRequireMiddleWare(MiddlewareMixin):
         def __init__(self, get_response):
@@ -12,7 +13,7 @@ class LoginRequireMiddleWare(MiddlewareMixin):
             except_list1 = ['/gallery/']
             if request.path[0:8] == '/gallery' and request.path not in except_list1:
                 if not request.session.has_key("username") or not request.session["username"]:
-                    return HttpResponseRedirect("/u/signin")
+                    return HttpResponseRedirect("/u/signin/?wish=" + quote_plus(request.path))
 
             #need to be POST
             except_list2 = ['import-arts', 'crt-gly', 'edit-warehouse', 'edit-staff', 'edit-art']

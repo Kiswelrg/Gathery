@@ -30,6 +30,7 @@ def Index(request):
     return render(request,'user/index.html')
 
 def Signin(request):
+    print('test: ', request.GET.get('a'))
     return render(request,'user/signin.html')
 
 def Signup(request):
@@ -52,7 +53,8 @@ def signup(request):
         u.save()
     else:
         return HttpResponseRedirect('/?vcode=0')
-    return HttpResponseRedirect('/')
+    
+    return HttpResponseRedirect('/u/signin')
 
 @xframe_options_sameorigin
 def loginContent(request):
@@ -72,7 +74,11 @@ def Login(request):
                     if pwd_hash == hashlib.sha256((password + 'vr').encode('utf-8')).hexdigest():
                         request.session["username"] = u
                         request.session["uid"] = get_user.id
-                        return HttpResponseRedirect('/')
+                        print('wish: ' + request.GET.get('wish'))
+                        if request.GET.get('wish') is None:
+                            return HttpResponseRedirect('/')
+                        else:
+                            return HttpResponseRedirect(request.GET.get('wish'))
                     else:
                         return HttpResponseRedirect(reverse('user:sign-in') + '?username=0')
                 else:
@@ -84,7 +90,8 @@ def Login(request):
     return HttpResponseRedirect(reverse('user:sign-in'))
 
 def Logout(request):
-    del request.session["username"], request.session["uid"]
+    if request.session.has_key("username") and request.session["username"]:
+        del request.session["username"], request.session["uid"]
     return HttpResponseRedirect('/')
 
 def Vcode(request):

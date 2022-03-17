@@ -160,7 +160,6 @@ def Home(request):
 
 
 def galleryManage(request, gId = ''):
-    print(gId)
     return render(request, 'gallery/manage.html')
 
 
@@ -202,7 +201,6 @@ def SearchOld(request, page=1):
 
 # sesrch art
 def getArt(request):
-    print(request.path)
     print(request.GET)
     form_list = ['csrfmiddlewaretoken',
                 'scode',
@@ -421,10 +419,10 @@ def importarts(request):
             if a.get(d) is not None:
                 # datetime.fromisoformat('2011-11-04T00:05:23+04:00')   
                 a[d] = datetime.strptime(a[d],'%Y-%m-%dT%H:%M:%S.000Z')
-                print(a[d])
+                #print(a[d])
                 #a[d] = a[d].replace(tzinfo=ptz.utc)
                 a[d] = a[d].replace(tzinfo=ptz(timedelta(hours=int(request.POST['tz']))))
-                print(a[d])
+                #print(a[d])
 
 
     batch_size = 100
@@ -500,7 +498,7 @@ def editStaff(request):
             request.POST[i]
     except MultiValueDictKeyError:
         raise Http404('wow u got a 404!?')
-    print(request.POST)
+
     u = request.session.get('uid')
     g = Gallery.objects.get(galleryId = request.POST.get('g'))
     if request.POST.get('w') != '':
@@ -521,8 +519,6 @@ def editStaff(request):
             p.pop(i,None)
     ee = json.loads(request.POST['employee'])
 
-    print(type(request.POST['info']))
-    print(p['privilege'])
     p['privilege'] = int(p['privilege'])
 
     if int(p['role']) < int(u_role) or p['privilege'] > u_pri:
@@ -555,7 +551,6 @@ def editStaff(request):
             WU_Relation.objects.filter(warehouse = w, staff_member__urlCode = ee['ph']).delete()
             p['gallery'] = g
             p['staff_member'] = staff
-            print(p)
             GU_Relation.objects.create(**p)
     elif request.POST['m'] == '1':
         if ty == 0:
@@ -622,7 +617,6 @@ def editWarehouse(request):
         except ObjectDoesNotExist:
             raise Http404('wow u got a 404!4')
 
-    print(u_pri)
     p = json.loads(request.POST['info'])
     for i in info_list:
         if p[i] == '':
@@ -675,20 +669,20 @@ def editArt(request):
             request.POST[i]
     except MultiValueDictKeyError:
         raise Http404('wow u got a 404!1')
-    print(1)
+    
     m = request.POST.get('m')
     if m == '':
         raise Http404('wow u got a 404!1')
     m = int(m)
     p = json.loads(request.POST['info'])
-    print(2)
+    
     for i in info_list:
         if p[i] == '':
             p.pop(i,None)
     for i in range(3,5):
         if p.get(info_list[i]) != None:
             p[info_list[i]] = p[info_list[i]].astimezone(timezone.get_current_timezone())
-    print(3)
+    
     if p.get('id') is not None and p.get('id') != '':
         try:
             a = Art.objects.get(id=p.get('id'))
@@ -709,7 +703,7 @@ def editArt(request):
         except ObjectDoesNotExist:
             raise Http404('authentication forbidden')
         g = w.gallery
-    print(4)
+    
     try:
         u_pri = GU_Relation.objects.get(staff_member__id = u, gallery = g).privilege
     except ObjectDoesNotExist:
@@ -720,7 +714,7 @@ def editArt(request):
     print('pri : ', u_pri)
     if m == 0 and u_pri & 0b000000000000100:
         w_to = request.POST['w']
-        print(2)
+        
         if w_to != '' and w_to != w.urlCode:
             w2 = Warehouse.objects.filter(urlCode = w_to)
             if len(w2) == 0:
@@ -731,7 +725,7 @@ def editArt(request):
                 wur = WU_Relation.objects.filter(warehouse = w2, staff_member__id = u)
                 if len(wur)==0 or not (wur[0].privilege & 4):
                     raise Http404('authentication forbidden')
-            print(3)
+            
             p['warehouse'] = w2[0]
         p.pop('id', None)
         print(p)
@@ -740,7 +734,7 @@ def editArt(request):
         print(a)
         a.save()
     elif m == 1 and u_pri & 0b000000000000010:
-        print(6)
+        
         p['warehouse'] =  w
         p.pop('id', None)
         a2 = Art.objects.create(**p)

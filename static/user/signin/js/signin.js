@@ -34,6 +34,8 @@ const signin_app = Vue.createApp({
       idCheckExpression: /^(?=[a-zA-Z0-9_]{6,20}$)(?!.*[_]{2})[^_].*[^_]$/,
       idIsValid: false,
       idIsUsed: false,
+      base_action: '/u/login/',
+      wish: '',
       tips: {
         id: {
           show: false,
@@ -50,7 +52,11 @@ const signin_app = Vue.createApp({
       }
     };
   },
-  computed: {},
+  computed: {
+    action() {
+      return this.base_action + '?wish=' + encodeURIComponent(this.wish);
+    },
+  },
   methods: {
     checkEmpty(e) {
       if (e.key == "Enter" || e.target.value != "") this.whHelp = false;
@@ -77,6 +83,9 @@ const signin_app = Vue.createApp({
     }
     else if (urlParams.get('vcode') == '0') {
       this.tips.vcode.show = true;
+    }
+    if (urlParams.get('wish') !== null) {
+      this.wish = urlParams.get('wish');
     }
   },
 });
