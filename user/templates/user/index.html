@@ -1,0 +1,267 @@
+{% extends "main_guest.html" %}
+
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top" style="background-color: #fafafa">
+  <head>
+    {% block head_content %}
+    {{ block.super }}
+    {% endblock %}
+
+    <title>{% block title %}{{ block.super }}{% endblock %}</title>
+
+    {% load static %}
+    
+    {% block cdnjs %}
+    {{ block.super }}
+    {% endblock %}
+    
+    {% block globalcss %}
+    {{ block.super }}
+    {% endblock %}
+    
+    {% block templatecss %}
+    {{ block.super }}
+    {% endblock %}
+    
+    {% block templatescript %}
+    {{ block.super }}
+    {% endblock %} 
+    
+    {% block main_font %}
+    {{ block.super }}
+    {% endblock %}
+  </head>
+
+  <body style="--global-nav-ad-bar-height: 0px !important">
+    {% block globalnav %}
+    {{ block.super }}
+    {% endblock %} 
+    
+    {% block main %}
+
+    <main id="main" class="main">
+      <section class="section section-speech section-tiles-grid">
+        <div class="section-content">
+          <h2
+            class="section-headline typography-section-headline large-8 large-centered small-12"
+          >
+            Take Full Control ,<br />of your Galleries.
+          </h2>
+          <div class="grid-container">
+            <section
+              class="grid-item full grid-item-voice-control card-voice-control slide-in"
+              >
+              <div class="header-content">
+                <h3 class="grid-headline typography-grid-headline">作品查询</h3>
+                <p class="grid-copy typography-grid-copy">
+                  动动手，<br />快速精准检索。
+                </p>
+              </div>
+              <noscript>
+                <style>
+                  picture#overview-voice-control-1 {
+                    display: none !important;
+                  }
+                </style>
+              </noscript>
+              <picture
+                id="overview-voice-control-1"
+                class="overview-voice-control"
+              >
+                <source
+                  srcset="{% static 'home/main/img/ama3.jpg' %} 1x, {% static 'home/main/img/ama3.jpg' %} 2x"
+                  media="(max-width:734px)"
+                />
+                <source
+                  srcset="{% static 'home/main/img/AmaDablam.jpg' %} 1x, {% static 'home/main/img/AmaDablam.jpg' %} 2x"
+                  media="(max-width:1068px)"
+                />
+                <source
+                  srcset="{% static 'home/main/img/AmaDablam.jpg' %} 1x, {% static 'home/main/img/AmaDablam.jpg' %} 2x"
+                  media="(min-width:0px)"
+                />
+                <img
+                  src="{% static 'home/main/img/AmaDablam.jpg' %}"
+                  class="overview-voice-control-img min-w-full min-h-full"
+                  width="100%"
+                  height="100%"
+                  alt="一系列细分的搜索项,满足所有精确查询"
+                />
+              </picture>
+              <noscript>
+                <picture class="overview-voice-control">
+                  <source
+                    srcset="{% static 'home/main/img/ama3.jpg' %} 1x, {% static 'home/main/img/ama3.jpg' %} 2x"
+                    media="(max-width:734px)"
+                  />
+                  <source
+                    srcset="{% static 'home/main/img/AmaDablam.jpg' %} 1x, {% static 'home/main/img/AmaDablam.jpg' %} 2x"
+                    media="(max-width:1068px)"
+                  />
+                  <source
+                    srcset="{% static 'home/main/img/AmaDablam.jpg' %} 1x, {% static 'home/main/img/AmaDablam.jpg' %} 2x"
+                    media="(min-width:0px)"
+                  />
+                  <img
+                    src="{% static 'home/main/img/AmaDablam.jpg' %}"
+                    class="overview-voice-control-img"
+                    width="100%"
+                    height="100%"
+                    alt=""
+                  />
+                </picture>
+              </noscript>
+              <button class="icon-wrapper modal-trigger" tabindex="-1">
+                <i class="icon fas fa-plus-circle" tabindex="0"></i>
+                <span class="visuallyhidden">进一步了解语音控制</span>
+              </button>
+            </section>
+            
+            <section
+              class="grid-item half animation-static vert-center grid-item-switch-control card-switch-control slide-in"
+              >
+              <div class="header-content">
+                <h3 class="grid-headline typography-grid-headline">随时随地。</h3>
+                <p class="grid-copy typography-grid-copy">远程控制</p>
+              </div>
+              <noscript>
+                <style>
+                  picture#overview-switch-control-1 {
+                    display: none !important;
+                  }
+                </style>
+              </noscript>
+              <picture
+                id="overview-switch-control-1"
+                class="overview-switch-control"
+              >
+                <source
+                  srcset="{% static 'home/main/img/cabinet.jpg' %} 1x, {% static 'home/main/img/cabinet.jpg' %} 2x"
+                  media="(max-width:734px)"
+                />
+                <source
+                  srcset="{% static 'home/main/img/cabinet.jpg' %} 1x, {% static 'home/main/img/cabinet.jpg' %} 2x"
+                  media="(max-width:1068px)"
+                />
+                <source
+                  srcset="{% static 'home/main/img/cabinet.jpg' %} 1x, {% static 'home/main/img/cabinet.jpg' %} 2x"
+                  media="(min-width:0px)"
+                />
+                <img
+                  src="{% static 'home/main/img/cabinet.jpg' %}"
+                  class="overview-switch-control-img"
+                  width="100%"
+                  height="100%"
+                  alt="地图 app 中的搜索功能显示切换控制面板"
+                />
+              </picture>
+              <noscript>
+                <picture class="overview-switch-control">
+                  <source
+                    srcset="{% static 'home/main/img/cabinet.jpg' %} 1x, {% static 'home/main/img/cabinet.jpg' %} 2x"
+                    media="(max-width:734px)"
+                  />
+                  <source
+                    srcset="{% static 'home/main/img/cabinet.jpg' %} 1x, {% static 'home/main/img/cabinet.jpg' %} 2x"
+                    media="(max-width:1068px)"
+                  />
+                  <source
+                    srcset="{% static 'home/main/img/cabinet.jpg' %} 1x, {% static 'home/main/img/cabinet.jpg' %} 2x"
+                    media="(min-width:0px)"
+                  />
+                  <img
+                    src="{% static 'home/main/img/cabinet.jpg' %}"
+                    class="overview-switch-control-img"
+                    width="100%"
+                    height="100%"
+                    alt="地图 app 中的搜索功能显示切换控制面板"
+                  />
+                </picture>
+              </noscript>
+              <button class="icon-wrapper modal-trigger" tabindex="-1">
+                <i class="icon fas fa-plus-circle" tabindex="0"></i
+                ><span class="visuallyhidden">进一步了解切换控制</span>
+              </button>
+            </section>
+            <section
+              class="grid-item half animation-static vert-center grid-item-switch-control card-switch-control slide-in"
+              >
+              <div class="header-content">
+                <h3 class="grid-headline typography-grid-headline">快速构建起画廊数据库</h3>
+                <p class="grid-copy typography-grid-copy">文件导入。</p>
+              </div>
+              <noscript>
+                <style>
+                  picture#overview-switch-control-1 {
+                    display: none !important;
+                  }
+                </style>
+              </noscript>
+              <picture
+                id="overview-switch-control-1"
+                class="overview-switch-control"
+              >
+                <source
+                  srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                  media="(max-width:734px)"
+                />
+                <source
+                  srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                  media="(max-width:1068px)"
+                />
+                <source
+                  srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                  media="(min-width:0px)"
+                />
+                <img
+                  src="{% static 'home/main/img/fluid.jpg' %}"
+                  class="overview-switch-control-img"
+                  width="100%"
+                  height="100%"
+                  alt="地图 app 中的搜索功能显示切换控制面板"
+                />
+              </picture>
+              <noscript>
+                <picture class="overview-switch-control">
+                  <source
+                    srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                    media="(max-width:734px)"
+                  />
+                  <source
+                    srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                    media="(max-width:1068px)"
+                  />
+                  <source
+                    srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                    media="(min-width:0px)"
+                  />
+                  <img
+                    src="{% static 'home/main/img/fluid.jpg' %}"
+                    class="overview-switch-control-img"
+                    width="100%"
+                    height="100%"
+                    alt="地图 app 中的搜索功能显示切换控制面板"
+                  />
+                </picture>
+              </noscript>
+              <button class="icon-wrapper modal-trigger" tabindex="-1">
+                <i class="icon fas fa-plus-circle" tabindex="0"></i
+                ><span class="visuallyhidden">进一步了解切换控制</span>
+              </button>
+            </section>
+          </div>
+          <div class="section-footer">
+            <a
+              href="/gallery/search"
+              class="icon-wrapper button button-super button-outlined typography-section-button"
+              ><span class="icon-copy">搜索画廊作品</span
+              ><span class="icon icon-after more"></span
+            ></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    {% endblock %} {% block footer %} {{ block.super }} {% endblock %}
+  </body>
+</html>

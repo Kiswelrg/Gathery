@@ -1,0 +1,240 @@
+.grid-item-assistivetouch .inline-media figure.inline-video-frame-end {
+    background-image: url("/accessibility/images/overview/fallbacks/assistive_touch_endframe__bltdow148n6q_large.jpg");
+    position:relative;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx),(-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi) {
+    .grid-item-assistivetouch .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/assistive_touch_endframe__bltdow148n6q_large_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+    .grid-item-assistivetouch .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/assistive_touch_endframe__bltdow148n6q_medium.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and ( max-width: 1068px) and (min-resolution: 1.5dppx), only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .grid-item-assistivetouch .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/assistive_touch_endframe__bltdow148n6q_medium_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) {
+    .grid-item-assistivetouch .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/assistive_touch_endframe__bltdow148n6q_small.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 734px) and (min-resolution: 1.5dppx), only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+    .grid-item-assistivetouch .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/assistive_touch_endframe__bltdow148n6q_small_2x.jpg")
+    }
+}
+.grid-item-sensory-alerts .inline-media figure.inline-video-frame-end {
+    background-image: url("/accessibility/images/overview/fallbacks/sensory_alerts_endframe__gajihzngx8a6_large.jpg");
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx),(-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi) {
+    .grid-item-sensory-alerts .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/sensory_alerts_endframe__gajihzngx8a6_large_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+    .grid-item-sensory-alerts .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/sensory_alerts_endframe__gajihzngx8a6_medium.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 1068px) and (min-resolution: 1.5dppx), only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .grid-item-sensory-alerts .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/sensory_alerts_endframe__gajihzngx8a6_medium_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) {
+    .grid-item-sensory-alerts .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/sensory_alerts_endframe__gajihzngx8a6_small.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 734px) and (min-resolution: 1.5dppx), only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+    .grid-item-sensory-alerts .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/sensory_alerts_endframe__gajihzngx8a6_small_2x.jpg")
+    }
+}
+
+
+.section-hero .inline-media figure.inline-video-frame-end {
+    background-image: url("/accessibility/images/overview/fallbacks/hero_endframe__eocolbpq4bsm_large.jpg");
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx),(-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi) {
+    .section-hero .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/hero_endframe__eocolbpq4bsm_large_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+    .section-hero .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/hero_endframe__eocolbpq4bsm_medium.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 1068px) and (min-resolution: 1.5dppx), only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .section-hero .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/hero_endframe__eocolbpq4bsm_medium_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) {
+    .section-hero .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/hero_endframe__eocolbpq4bsm_small.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 734px) and (min-resolution: 1.5dppx), only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+    .section-hero .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/hero_endframe__eocolbpq4bsm_small_2x.jpg")
+    }
+}
+
+
+.grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-end {
+    background-image: url("{% static '../images/overview/fallbacks/eye_endframe_large.jpg' %}");
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx),(-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi) {
+    .grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/eye_tracking_endframe__coisayuxm802_large_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+    .grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/eye_tracking_endframe__coisayuxm802_medium.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 1068px) and (min-resolution: 1.5dppx), only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/eye_tracking_endframe__coisayuxm802_medium_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) {
+    .grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/eye_tracking_endframe__coisayuxm802_small.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 734px) and (min-resolution: 1.5dppx), only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+    .grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/eye_tracking_endframe__coisayuxm802_small_2x.jpg")
+    }
+}
+.grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-start {
+    background-image: url("../images/overview/fallbacks/eye_startframe_large.jpg");
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx),(-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi) {
+    .grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-start {
+        background-image: url("/accessibility/images/overview/fallbacks/eye_tracking_startframe__bvr7b3b5h8xe_large_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+    .grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-start {
+        background-image: url("/accessibility/images/overview/fallbacks/eye_tracking_startframe__bvr7b3b5h8xe_medium.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 1068px) and (min-resolution: 1.5dppx), only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-start {
+        background-image: url("/accessibility/images/overview/fallbacks/eye_tracking_startframe__bvr7b3b5h8xe_medium_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) {
+    .grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-start {
+        background-image: url("/accessibility/images/overview/fallbacks/eye_tracking_startframe__bvr7b3b5h8xe_small.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 734px) and (min-resolution: 1.5dppx), only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+    .grid-item-eye-tracking.theme-dark .inline-media figure.inline-video-frame-start {
+        background-image: url("/accessibility/images/overview/fallbacks/eye_tracking_startframe__bvr7b3b5h8xe_small_2x.jpg")
+    }
+}
+
+.grid-item-assistive-touch.full .inline-media figure.inline-video-frame-end {
+    background-image: url("/accessibility/images/overview/fallbacks/clench_endframe__n8qlr5ce6aym_large.jpg");
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx),(-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi) {
+    .grid-item-assistive-touch.full .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/clench_endframe__n8qlr5ce6aym_large_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+    .grid-item-assistive-touch.full .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/clench_endframe__n8qlr5ce6aym_medium.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 1068px) and (min-resolution: 1.5dppx), only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .grid-item-assistive-touch.full .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/clench_endframe__n8qlr5ce6aym_medium_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) {
+    .grid-item-assistive-touch.full .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/clench_endframe__n8qlr5ce6aym_small.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 734px) and (min-resolution: 1.5dppx), only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+    .grid-item-assistive-touch.full .inline-media figure.inline-video-frame-end {
+        background-image: url("/accessibility/images/overview/fallbacks/clench_endframe__n8qlr5ce6aym_small_2x.jpg")
+    }
+}
+
+.grid-item-assistive-touch.full .inline-media figure.inline-video-frame-start {
+    background-image: url("/accessibility/images/overview/fallbacks/clench_startframe__ge5sx7vxgmi6_large.jpg");
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx),(-webkit-min-device-pixel-ratio: 1.5),(min-resolution: 144dpi) {
+    .grid-item-assistive-touch.full .inline-media figure.inline-video-frame-start {
+        background-image: url("/accessibility/images/overview/fallbacks/clench_startframe__ge5sx7vxgmi6_large_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) {
+    .grid-item-assistive-touch.full .inline-media figure.inline-video-frame-start {
+        background-image: url("/accessibility/images/overview/fallbacks/clench_startframe__ge5sx7vxgmi6_medium.jpg")
+    }
+}
+
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 1068px) and (min-resolution: 1.5dppx), only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .grid-item-assistive-touch.full .inline-media figure.inline-video-frame-start {
+        background-image: url("/accessibility/images/overview/fallbacks/clench_startframe__ge5sx7vxgmi6_medium_2x.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) {
+    .grid-item-assistive-touch.full .inline-media figure.inline-video-frame-start {
+        background-image: url("/accessibility/images/overview/fallbacks/clench_startframe__ge5sx7vxgmi6_small.jpg")
+    }
+}
+
+@media only screen and (max-width: 734px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 734px) and (min-resolution: 1.5dppx), only screen and (max-width: 734px) and (min-resolution: 144dpi) {
+    .grid-item-assistive-touch.full .inline-media figure.inline-video-frame-start {
+        background-image: url("/accessibility/images/overview/fallbacks/clench_startframe__ge5sx7vxgmi6_small_2x.jpg")
+    }
+}
+
+

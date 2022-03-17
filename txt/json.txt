@@ -1,0 +1,87 @@
+warehouse{
+	create{
+		name
+	}
+	import{
+		date_create
+		name
+		status
+	}
+	manage{
+		name
+		urlcode
+		gallery
+		date_create
+		date_add
+		staff_count
+		status
+		art_num
+	}
+}
+
+gallery{
+	create{
+		name
+		city
+		logo
+		info
+	}
+	import{
+		name
+		date_create
+		status
+		city
+		logo
+		info
+	}
+	manage{
+		name
+		urlcode
+		date_create
+		date_add
+		staff_count
+		wh_count
+		art_count
+		status
+		logo
+		info
+	}
+}
+
+art{
+	create{
+		necessary{
+			name
+			warehouse
+
+		}
+		optional{
+			date_made
+			date_add
+			last_transit
+			rack
+			type
+			author
+			status
+			picture
+			info
+		}
+
+	}
+	import/export {
+		name
+		date_made
+		warehouse_urlCode
+		gallery_galleryId
+		last_transit
+		rack
+		type
+		author
+		status
+		picture
+		info
+	}
+	manage{
+	
+	}
+}

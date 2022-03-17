@@ -1,0 +1,503 @@
+{% extends "main_user.html" %}
+
+<!DOCTYPE html>
+<html style="background-color: #fafafa" dir="ltr" lang="zh">
+  <head>
+    {% block head_content %} {{ block.super }} {% endblock %}
+
+    <title>{% block title %}Import Arts{% endblock %}</title>
+
+    {% load static %}
+
+    {% block cdnjs %}
+    {{ block.super }}
+    {% endblock %}
+    
+    {% block globalcss %}
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'home/globalnav/1/zh_CN/style/cc-globalnav.built.css' %}"
+    />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'home/globalfooter/style/cc-globalfooter.built.css' %}"
+    />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'home/main/css/tailwind.min.css' %}"
+    />
+    
+    {% endblock %}
+    
+    {% block templatecss %}
+    {{ block.super }}
+    
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static '/gallery/crt/style/importart.css' %}"
+    />
+    {% endblock %}
+    
+    {% block templatescript %}
+    <script
+      type="text/javascript"
+      src="{% static 'home/main/js/xlsx.full.min.js' %}"
+    ></script>
+    
+    
+    {% endblock %}
+
+    {% block main_font %}
+    {% endblock %}
+  </head>
+
+  <body style="--global-nav-ad-bar-height: 0px !important">
+    <div id="root">
+      {% block globalnav %}
+      {{ block.super }}
+      {% endblock %}
+
+      <div dir class="app-body-container app-body-container-auth">
+        
+
+        {% block localnav %}
+        {% with ln_title='Import to PAINT HOUSE' %}
+        {{ block.super }}
+        {% endwith %}
+        {% endblock %}
+
+        {% block main %}
+        
+        
+        {% endblock %}
+      </div>
+    </div>
+
+    {% block container %}
+    <div class="container" id="importart">
+			<div class="left-sidebar" id="left-sidebar">
+				<div class="ls-container">
+					<div class="navigation">
+						<ol class="nav-links">
+							<li class="here">
+								<a href="" class="nav-link">
+									<div class="d-flex ai-center">
+										<div class="link-text">
+											Home
+										</div>
+								  </div>
+								</a>
+							</li>
+							<li></li>
+							<li></li>
+						</ol>
+					</div>
+				</div>
+
+			</div>
+
+      <div id="content" class="pt0">
+				<div class="mainbar">
+          <div class="staff-container">
+            <div class="title">
+              <div class="title-head">
+                Import Arts
+              </div>
+            </div>
+            <div class="title-detail">
+              <div class="title-help">
+                Select or drag in files (.xlsx, .xls and or .csv) with headers including (for english: "name",
+                "date made",
+                "warehouse",
+                "gallery",
+                "last transit",
+                "author",
+                "status",
+                "picture",
+                "info",
+              for chinese:
+                "名称",
+                "创作日期",
+                "库房",
+                "画廊",
+                "最后交易",
+                "作者",
+                "状态",
+                "照片",
+                "信息"), valid forms should at least include the <strong>NAME</strong> header, the others are optional.<br>
+                Make sure your file is in standard format, and of course forms inside them have <strong>EXACT</strong> headers mentioned above, otherwise you can encounter a detection failure.
+              </div>
+              <div class="title-button">
+                <button>switch</button>
+              </div>
+            </div>
+            <div class="file-receiver border-dashed border-2 border-gray-400 rounded-md shadow-sm">
+              <div class="file-cover">
+                <div class="cover-img">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M256 0v128h128L256 0zM224 128L224 0H48C21.49 0 0 21.49 0 48v416C0 490.5 21.49 512 48 512h288c26.51 0 48-21.49 48-48V160h-127.1C238.3 160 224 145.7 224 128zM288.1 344.1C284.3 349.7 278.2 352 272 352s-12.28-2.344-16.97-7.031L216 305.9V408c0 13.25-10.75 24-24 24s-24-10.75-24-24V305.9l-39.03 39.03c-9.375 9.375-24.56 9.375-33.94 0s-9.375-24.56 0-33.94l80-80c9.375-9.375 24.56-9.375 33.94 0l80 80C298.3 320.4 298.3 335.6 288.1 344.1z"/></svg>
+                </div>
+                <div class="cover-text">
+                  <input
+                        multiple
+                        @change="fileInfo($event)" 
+                        id="fileinput" type="file" class="
+                          block w-full text-sm text-slate-500 my-4
+                          file:mr-4 file:py-2 file:px-4
+                          file:rounded-full file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-violet-50 file:text-violet-700
+                          hover:file:bg-violet-100
+                        "
+                        {% comment %} accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" {% endcomment %}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="staff-container" id="art_preview">
+            <div class="title">
+              <div class="title-head">
+                Preview
+              </div>
+            </div>
+            <div class="title-detail">
+              <div class="title-help">Here's what you are about to import exactly, make your modifications before submit.</div>
+              <div class="title-button">
+                <button>switch</button>
+              </div>
+            </div>
+            <div class="gw-selector-wrapper">
+              <!-- This example requires Tailwind CSS v2.0+ -->
+              <div class="my-6" id="g-selector">
+                <label id="listbox-label" class="block text-sm font-medium text-gray-700"> Assigned to gallery </label>
+                <div class="mt-1 relative select-menu">
+                  <button
+                    id="g-button"
+                    @click="toggleDropdown($event)"
+                    v-click-outside="closeDropdown"
+                    type="button" class="max-w-sm relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                    <span class="flex items-center pointer-events-none">
+                      <img src="{% static 'img/gallery.jpg' %}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
+                      <span id="g-button-text" class="ml-3 block truncate"> which gallery </span>
+                    </span>
+                    <span class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <!-- Heroicon name: solid/selector -->
+                      <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <ul class="dropdown-menu opacity-0 z-0 absolute mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+                    <!--
+                      Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+
+                      Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
+                    -->
+                    {% for g in g_results %}
+                    <li 
+                      class="{% if g is g_results.0 %}text-white bg-indigo-600 selected {% else %}text-gray-900 {% endif %} cursor-default select-none relative py-2 pl-3 pr-9"
+                      id="listbox-option-0"
+                      gid="{{ g.galleryId }}"
+                      role="option"
+                      @click="selectGallery($event)">
+                      <div class="flex items-center pointer-events-none">
+                        <img src="{% static 'img/gallery.jpg' %}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
+                        <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                        <span class="name font-normal ml-3 block truncate"> {{ g.name }} </span>
+                      </div>
+
+                      <!--
+                        Checkmark, only display for selected option.
+  
+                        Highlighted: "text-white", Not Highlighted: "text-indigo-600"
+                      -->
+                      <span class="text-white absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                        <!-- Heroicon name: solid/check -->
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                      </span>                     
+                    </li>
+                    {% endfor %}
+
+                    <!-- More items... -->
+                  </ul>
+                </div>
+              </div>
+
+              <div class="my-6" id="w-selector">
+                <label id="listbox-label" class="block text-sm font-medium text-gray-700"> Assigned to warehouse </label>
+                <div class="mt-1 relative select-menu">
+                  <button
+                    id="w-button"
+                    @click="toggleDropdown($event)"
+                    v-click-outside="closeDropdown"
+                    type="button" class=" max-w-sm relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                    <span class="flex items-center pointer-events-none">
+                      <img src="{% static 'img/warehouse.png' %}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
+                      <span id="w-button-text" class="ml-3 block truncate"> which warehouse </span>
+                    </span>
+                    <span class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <!-- Heroicon name: solid/selector -->
+                      <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <!--
+                    Select popover, show/hide based on select state.
+
+                    Entering: ""
+                      From: ""
+                      To: ""
+                    Leaving: "transition ease-in duration-100"
+                      From: "opacity-100"
+                      To: "opacity-0"
+                  -->
+                  <ul class="dropdown-menu opacity-0 z-0 absolute mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+                    <!--
+                      Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+
+                      Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
+                    -->
+
+                    <li 
+                      class="wh-opt cursor-default select-none relative py-2 pl-3 pr-9"
+                      id="listbox-option-0"
+                      :key="w.w_id"
+                      :wid="w.w_id"
+                      v-for="(w, index) in Ws"
+                      :class="{'text-white bg-indigo-600 selected' : index === 0, 'text-gray-900': index !== 0}"
+                      role="option"
+                      @click="selectWarehouse($event)">
+                      <div class="flex items-center pointer-events-none">
+                        <img src="{% static 'img/gallery.jpg' %}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
+                        <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                        <span class="name font-normal ml-3 block truncate"> [[ w.name ]] </span>
+                      </div>
+
+                      <!--
+                        Checkmark, only display for selected option.
+  
+                        Highlighted: "text-white", Not Highlighted: "text-indigo-600"
+                      -->
+                      <span 
+                        {% comment %} :class="{'text-indigo-600' : index === 0, 'text-white': index !== 0}"  {% endcomment %}
+                        class="text-white absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none"
+                      >
+                        <!-- Heroicon name: solid/check -->
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                      </span>                     
+                    </li>
+                    
+
+                    <!-- More items... -->
+                  </ul>
+                </div>
+              </div>
+
+              <div class="my-6" id="m-selector">
+                <label id="listbox-label" class="block text-sm font-medium text-gray-700"> Assigned to warehouse </label>
+                <div class="mt-1 relative select-menu">
+                  <button
+                    id="m-button"
+                    @click="toggleDropdown($event)"
+                    v-click-outside="closeDropdown"
+                    type="button" class="max-w-sm relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                    <span class="flex items-center pointer-events-none">
+                      <img src="{% static 'img/warehouse.png' %}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
+                      <span id="m-button-text" class="ml-3 block truncate"> Warehouse selection mode </span>
+                    </span>
+                    <span class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <!-- Heroicon name: solid/selector -->
+                      <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <!--
+                    Select popover, show/hide based on select state.
+
+                    Entering: ""
+                      From: ""
+                      To: ""
+                    Leaving: "transition ease-in duration-100"
+                      From: "opacity-100"
+                      To: "opacity-0"
+                  -->
+                  <ul class="dropdown-menu opacity-0 z-0 absolute mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+                    <!--
+                      Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+
+                      Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
+                    -->
+
+                    <li 
+                      class="wh-opt cursor-default select-none relative py-2 pl-3 pr-9"
+                      id="listbox-option-0"
+                      :key="m.id"
+                      :mid="m.id"
+                      v-for="(m, index) in Ms"
+                      :class="{'text-white bg-indigo-600 selected' : index === 0, 'text-gray-900': index !== 0}"
+                      role="option"
+                      @click="selectMode($event)">
+                      <div class="flex items-center pointer-events-none">
+                        <img src="{% static 'img/gallery.jpg' %}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
+                        <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                        <span :mid="m.id" class="whitespace-normal font-normal ml-3 block truncate"> [[ m.name ]] </span>
+                      </div>
+
+                      <!--
+                        Checkmark, only display for selected option.
+  
+                        Highlighted: "text-white", Not Highlighted: "text-indigo-600"
+                      -->
+                      <span 
+                        {% comment %} :class="{'text-indigo-600' : index === 0, 'text-white': index !== 0}"  {% endcomment %}
+                        class="text-white absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none"
+                      >
+                        <!-- Heroicon name: solid/check -->
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                      </span>                     
+                    </li>
+                    
+
+                    <!-- More items... -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="staff-list relative">
+              <div class="staff-table">
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <div class="flex flex-col">
+                  <div class="overflow-auto"  style="max-height: 800px">
+                    <div class="align-middle inline-block min-w-full">
+                      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200 ">
+                          <thead class="bg-gray-50">
+                            <tr>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name/Id</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gallery</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Warehouse</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">LAST TRANSIT</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rack</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tags</th>
+                              <th scope="col" class="relative px-4 py-3">
+                                <span class="sr-only">Edit</span>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody class="bg-white divide-y divide-gray-200">
+                            <tr
+                              :key="a.a_id"
+                              v-for="a in Arts"
+                            >
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 h-10 w-10">
+                                    <img class="h-10 w-10 rounded-full" src="{% static 'img/bs-clay.png' %}" alt="">
+                                  </div>
+                                  <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">[[ a[currentHeaders.at(0)] || name]]</div>
+                                    <div class="text-sm text-gray-500">[[ a[currentHeaders.at(5)] || 'Bosco Sodi@example.com' ]]</div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">[[ a[currentHeaders.at(3)] || 'Some Gallery' ]]</div>
+                                <div class="text-sm text-gray-500">[[ a[currentHeaders.at(3)] || 'id' ]]</div>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">[[ a[currentHeaders.at(2)] || 'Some Warehouse' ]]</div>
+                                <div class="text-sm text-gray-500">[[ a[currentHeaders.at(2)] || 'id' ]]</div>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">[[ a[currentHeaders.at(5)] || 'author' ]]</td>
+                              <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">[[ a[currentHeaders.at(1)] || 'date' ]]</td>
+                              <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">[[ a[currentHeaders.at(4)] || 'date' ]]</td>
+                              <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">[[ a[currentHeaders.at(6)] || 'rack' ]]</td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">[[ statusP(a[currentHeaders.at(7)]) ]]</span>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">#some#tag</td>
+                              <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                              </td>
+                            </tr>
+                            
+
+                            <!-- More people... -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="submit-wrapper">
+            <form
+              class="relative"
+              autocomplete="off"
+              @submit.prevent="submitImport()"
+              id="importArtForm"
+            >
+            
+              {% csrf_token %}
+              <input name="wh" id="wh-input" type="hidden" value="" />
+              <input name="tz" id="tz-input" type="hidden" :value="getTZ" />
+              <button class="button" id="smt-button" type="submit">
+                Submit Import
+              </button>
+            </form>
+          </div>
+
+				</div>
+
+				<div class="sidebar">
+					
+				</div>
+
+      </div>
+    </div>
+    {% endblock %}
+
+    {% block footer %} {{ block.super }} {% endblock %}
+
+    {% block endjs %}
+    {{ block.super }}
+    <script src="{% static 'home/main/js/vue.global.js' %}"></script>
+    <script src="{% static 'home/main/js/dayjs.min.js' %}"></script>
+    <script src="{% static 'home/main/js/luxon.min.js' %}"></script>
+    <script
+      type="text/javascript"
+      src="{% static 'gallery/crt/script/importart.js' %}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'gallery/crt/script/datefix.js' %}"
+    ></script>
+    {% endblock %}
+
+  </body>
+</html>

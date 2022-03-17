@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top" style="background-color: #fafafa">
+  <head>
+    {% block head_content %}
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=yes"
+    />
+    {% endblock %}
+
+    <title>{% block title %}PAINT HOUSE{% endblock %}</title>
+
+    {% load static %} {% block cdnjs %}
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'home/main/js/jquery.js' %}"
+    ></script>
+    {% endblock %}
+    
+    {% block globalcss %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'home/globalnav/1/zh_CN/style/cc-globalnav.built.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'home/globalfooter/style/cc-globalfooter.built.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'home/main/css/green.css' %}"
+    />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'home/main/css/tailwind.min.css' %}"
+    />
+    {% endblock %}
+    
+    {% block templatecss %}
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'home/main/css/main.built.css' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'home/main/css/index.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'home/main/css/fix.css' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static '/user/accessibility/styles/main.built.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/user/accessibility/styles/overview.built.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/user/accessibility/styles/overview.built2.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/user/accessibility/styles/overview.images.css' %}"
+      type="text/css"
+    />
+    {% endblock %} {% block templatescript %}
+    <script
+      src="{% static 'home/main/js/head.built.js' %}"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    {% endblock %} {% block main_font %}
+    <link rel="stylesheet" href="{% static '/wss/fonts/SFProv3' %}" />
+    <link rel="stylesheet" href="{% static '/wss/fonts/SFProSC' %}" />
+    <link rel="stylesheet" href="{% static '/wss/styles/sfpro-cn.css' %}" />
+    {% endblock %}
+  </head>
+
+  <body style="--global-nav-ad-bar-height: 0px !important">
+    {% block globalnav %}
+    <div class="nav-hold"></div>
+    <input
+      type="checkbox"
+      id="cc-gn-menustate"
+      class="cc-gn-menustate"
+      data-original-tabindex=""
+      tabindex="-1"
+      data-original-aria-hidden=""
+      aria-hidden="true"
+    />
+    <nav
+      id="cc-globalnav"
+      class="js no-touch windows no-firefox"
+      role="navigation"
+      aria-label="全部网站"
+      data-hires="false"
+      data-analytics-region="global nav"
+      lang="zh-CN"
+      dir="ltr"
+      data-www-domain="www.xxxxxx.com.cn"
+      data-store-locale="cn"
+      data-store-root-path="/"
+      data-store-api="/shop/bag/status"
+      data-search-locale="zh_CN"
+      data-search-suggestions-api="/search-services/suggestions/"
+      data-search-defaultlinks-api="/search-services/suggestions/defaultlinks/"
+    >
+      <div class="cc-gn-content">
+        <ul class="cc-gn-header">
+          <li class="cc-gn-item cc-gn-menuicon">
+            <a
+              href="#cc-gn-menustate"
+              role="button"
+              class="cc-gn-menuanchor cc-gn-menuanchor-open"
+              id="cc-gn-menuanchor-open"
+            >
+              <span class="cc-gn-menuanchor-label">Global Nav 打开菜单</span>
+            </a>
+            <a
+              href="#"
+              role="button"
+              class="cc-gn-menuanchor cc-gn-menuanchor-close"
+              id="cc-gn-menuanchor-close"
+            >
+              <span class="cc-gn-menuanchor-label">Global Nav 关闭菜单</span>
+            </a>
+            <label
+              class="cc-gn-menuicon-label"
+              for="cc-gn-menustate"
+              aria-hidden="true"
+            >
+              <span class="cc-gn-menuicon-bread cc-gn-menuicon-bread-top">
+                <span
+                  class="cc-gn-menuicon-bread-crust cc-gn-menuicon-bread-crust-top"
+                ></span>
+              </span>
+              <span class="cc-gn-menuicon-bread cc-gn-menuicon-bread-bottom">
+                <span
+                  class="cc-gn-menuicon-bread-crust cc-gn-menuicon-bread-crust-bottom"
+                ></span>
+              </span>
+            </label>
+          </li>
+          <li class="cc-gn-item cc-gn-painthouse">
+            <a
+              class="cc-gn-link cc-gn-link-painthouse"
+              href="/"
+              data-analytics-title="xxxxx home"
+              id="cc-gn-firstfocus-small"
+            >
+              <i class="fas fa-archway"></i>
+              <span class="cc-gn-link-text">Paint House</span>
+            </a>
+          </li>
+          <li class="cc-gn-item cc-gn-bag cc-gn-bag-small" id="cc-gn-bag-small">
+            <div class="cc-gn-bag-wrapper">
+              <a
+                class="cc-gn-link cc-gn-link-bag"
+                href="/"
+                data-analytics-title="bag"
+                data-analytics-click="bag"
+                aria-label="购物袋"
+                data-string-badge="购物袋中的商品数量：件"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="cc-gn-bagview-content"
+                tabindex="0"
+              >
+                <span class="cc-gn-link-text">购物袋</span>
+              </a>
+              <span
+                class="cc-gn-bag-badge"
+                aria-hidden="true"
+                data-analytics-title="bag"
+                data-analytics-click="bag"
+              >
+                <span class="cc-gn-bag-badge-separator"></span>
+                <span class="cc-gn-bag-badge-number"></span>
+                <span class="cc-gn-bag-badge-unit">+</span>
+              </span>
+            </div>
+            <span class="cc-gn-bagview-caret cc-gn-bagview-caret-large"></span>
+          </li>
+        </ul>
+        <div class="cc-gn-search-placeholder-container" role="search">
+          <div class="cc-gn-search cc-gn-search-small">
+            <a
+              id="cc-gn-link-search-small"
+              class="cc-gn-link"
+              href="#"
+              data-analytics-title="search"
+              data-analytics-intrapage-link=""
+              aria-label="搜索 painthouse.cn"
+              role="button"
+              aria-haspopup="true"
+            >
+              <div class="cc-gn-search-placeholder-bar">
+                <div class="cc-gn-search-placeholder-input">
+                  <div
+                    class="cc-gn-search-placeholder-input-text"
+                    aria-hidden="true"
+                  >
+                    <div
+                      class="cc-gn-link-search cc-gn-search-placeholder-input-icon"
+                    ></div>
+                    <span class="cc-gn-search-placeholder"
+                      >搜索 painthouse.cn</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="cc-gn-searchview-close cc-gn-searchview-close-small cc-gn-search-placeholder-searchview-close"
+                >
+                  <span class="cc-gn-searchview-close-cancel" aria-hidden="true"
+                    >取消</span
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <ul class="cc-gn-list">
+          <li class="cc-gn-item cc-gn-painthouse">
+            <a
+              class="cc-gn-link cc-gn-link-painthouse"
+              href="/"
+              data-analytics-title="Paint House  home"
+              id="cc-gn-firstfocus"
+            >
+              <i class="fas fa-archway"></i>
+              <span class="cc-gn-link-text">Paint House </span>
+            </a>
+          </li>
+
+          <li class="cc-gn-item cc-gn-item-menu cc-gn-holder">
+            <a
+              class="cc-gn-link cc-gn-link-holder"
+              href="/"
+              data-analytics-title="mac"
+            >
+              <span class="cc-gn-link-text-holder">&nbsp;&nbsp;</span>
+              <span class="cc-gn-link-text"></span>
+            </a>
+          </li>
+          <li class="cc-gn-item cc-gn-item-menu cc-gn-holder">
+            <a
+              class="cc-gn-link cc-gn-link-holder"
+              href="/gallery/importart"
+              data-analytics-title="mac"
+            >
+            <span class="cc-gn-link-text-manage cc-gn-link-text-temporary"
+            >Import Arts</span
+            >
+              <span class="cc-gn-link-text"></span>
+            </a>
+          </li>
+          <li class="cc-gn-item cc-gn-item-menu cc-gn-holder">
+            <a
+              class="cc-gn-link cc-gn-link-holder"
+              href="/gallery/crtgallery"
+              data-analytics-title="mac"
+            >
+            <span class="cc-gn-link-text-manage cc-gn-link-text-temporary"
+            >Create gallery</span
+            >
+              <span class="cc-gn-link-text"></span>
+            </a>
+          </li>
+          <li class="cc-gn-item cc-gn-item-menu cc-gn-holder">
+            <a
+              class="cc-gn-link cc-gn-link-holder"
+              href="/gallery/search/"
+              data-analytics-title="mac"
+            >
+              <span class="cc-gn-link-text-manage cc-gn-link-text-temporary"
+              >Search</span
+              >
+              <span class="cc-gn-link-text"></span>
+            </a>
+          </li>
+          <li class="cc-gn-item cc-gn-item-menu cc-gn-store">
+            <a
+              class="cc-gn-link cc-gn-link-manage"
+              href="/gallery/manage"
+              data-analytics-title="store"
+            >
+              <span class="cc-gn-link-text-manage cc-gn-link-text-temporary"
+                >Manage</span
+              >
+              <span class="cc-gn-link-text">Management</span>
+            </a>
+          </li>
+          <li class="cc-gn-item cc-gn-item-menu cc-gn-holder">
+            <a
+              class="cc-gn-link cc-gn-link-support"
+              href="/"
+              data-analytics-title="mac"
+            >
+              <span class="cc-gn-link-temp-support cc-gn-link-text-temporary"
+                >Support</span
+              >
+              <span class="cc-gn-link-text">Support</span>
+            </a>
+          </li>
+          <li class="cc-gn-item cc-gn-item-menu cc-gn-holder">
+            <a
+              class="cc-gn-link cc-gn-link-holder"
+              href="/u/signin"
+              data-analytics-title="mac"
+            >
+              <span class="cc-gn-link-temp-support cc-gn-link-text-temporary"
+                >Sign in</span
+              >
+              <span class="cc-gn-link-text"></span>
+            </a>
+          </li>
+          <li class="cc-gn-item cc-gn-item-menu cc-gn-holder">
+            <a
+              class="cc-gn-link cc-gn-link-holder"
+              href="/u/signup/"
+              data-analytics-title="mac"
+            >
+              <span class="cc-gn-link-temp-support cc-gn-link-text-temporary"
+                >Sign up</span
+              >
+              <span class="cc-gn-link-text"></span>
+            </a>
+          </li>
+          <li class="cc-gn-item cc-gn-item-menu cc-gn-holder">
+            <a
+              class="cc-gn-link cc-gn-link-holder"
+              href="/"
+              data-analytics-title="mac"
+            >
+              <span class="cc-gn-link-text-holder">&nbsp;&nbsp;</span>
+              <span class="cc-gn-link-text"></span>
+            </a>
+          </li>
+
+          <li class="cc-gn-item cc-gn-item-menu cc-gn-search" role="search">
+            <a
+              id="cc-gn-link-search"
+              class="cc-gn-link cc-gn-link-search"
+              href="/search"
+              data-analytics-title="search"
+              data-analytics-intrapage-link=""
+              aria-label="搜索 painthouse.cn"
+              role="button"
+              aria-haspopup="true"
+            ></a>
+          </li>
+          <li class="cc-gn-item cc-gn-bag" id="cc-gn-bag">
+            <div class="cc-gn-bag-wrapper">
+              <a
+                class="cc-gn-link cc-gn-link-bag"
+                href=""
+                data-analytics-title="bag"
+                data-analytics-click="bag"
+                aria-label="购物袋"
+                data-string-badge="购物袋中的商品数量：-件"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="cc-gn-bagview-content"
+              >
+                <span class="cc-gn-link-text">购物袋</span>
+              </a>
+              <span
+                class="cc-gn-bag-badge"
+                aria-hidden="true"
+                data-analytics-title="bag"
+                data-analytics-click="bag"
+              >
+                <span class="cc-gn-bag-badge-separator"></span>
+                <span class="cc-gn-bag-badge-number"></span>
+                <span class="cc-gn-bag-badge-unit">+</span>
+              </span>
+            </div>
+            <span class="cc-gn-bagview-caret cc-gn-bagview-caret-large"></span>
+          </li>
+        </ul>
+        <aside
+          id="cc-gn-searchview"
+          class="cc-gn-searchview"
+          role="search"
+          data-analytics-region="search"
+        >
+          <div class="cc-gn-searchview-content">
+            <div class="cc-gn-searchview-bar">
+              <div class="cc-gn-searchview-bar-wrapper">
+                <form
+                  id="cc-gn-searchform"
+                  class="cc-gn-searchform"
+                  action="/search"
+                  method="get"
+                >
+                  <div class="cc-gn-searchform-wrapper">
+                    <input
+                      id="cc-gn-searchform-input"
+                      class="cc-gn-searchform-input"
+                      type="text"
+                      aria-label="搜索 painthouse.cn"
+                      placeholder="搜索 painthouse.cn"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="off"
+                      spellcheck="false"
+                      role="combobox"
+                      aria-autocomplete="list"
+                      aria-expanded="true"
+                      aria-owns="quicklinks suggestions"
+                    />
+                    <input
+                      id="cc-gn-searchform-src"
+                      type="hidden"
+                      name="src"
+                      value="globalnav"
+                    />
+                    <button
+                      id="cc-gn-searchform-submit"
+                      class="cc-gn-searchform-submit"
+                      type="submit"
+                      disabled=""
+                      aria-label="提交搜索"
+                    ></button>
+                    <button
+                      id="cc-gn-searchform-reset"
+                      class="cc-gn-searchform-reset"
+                      type="reset"
+                      disabled=""
+                      aria-label="清除搜索"
+                    >
+                      <span class="cc-gn-searchform-reset-background"></span>
+                    </button>
+                  </div>
+                </form>
+                <button
+                  id="cc-gn-searchview-close-small"
+                  class="cc-gn-searchview-close cc-gn-searchview-close-small"
+                  aria-label="取消搜索"
+                >
+                  <span
+                    class="cc-gn-searchview-close-cancel"
+                    aria-hidden="true"
+                  >
+                    取消
+                  </span>
+                </button>
+              </div>
+            </div>
+            <aside
+              id="cc-gn-searchresults"
+              class="cc-gn-searchresults"
+              data-string-quicklinks="快速链接"
+              data-string-suggestions="搜索结果建议"
+              data-string-noresults=""
+            >
+              <section
+                class="cc-gn-searchresults-section cc-gn-searchresults-section-defaultlinks"
+                data-analytics-region="defaultlinks search"
+              >
+                <div class="cc-gn-searchresults-section-wrapper">
+                  <h3
+                    class="cc-gn-searchresults-header cc-gn-searchresults-animated"
+                  >
+                    快速链接
+                  </h3>
+                  <ul
+                    class="cc-gn-searchresults-list"
+                    id="defaultlinks"
+                    role="listbox"
+                  >
+                    <li
+                      class="cc-gn-searchresults-item cc-gn-searchresults-animated"
+                      role="presentation"
+                    >
+                      <a
+                        href="https://www.xxxxxxx.com.cn/shop/goto/gifts"
+                        role="option"
+                        class="cc-gn-searchresults-link cc-gn-searchresults-link-defaultlinks"
+                        data-query="no keyword"
+                        data-section="defaultlinks"
+                        data-items="5"
+                        data-index="0"
+                        data-label="节日礼物"
+                        data-analytics-click="eVar23: {data-query} | {data-section} | {data-items} | {data-label} | {data-index}, events:event50"
+                        >节日礼物</a
+                      >
+                    </li>
+                    <li
+                      class="cc-gn-searchresults-item cc-gn-searchresults-animated"
+                      role="presentation"
+                    >
+                      <a
+                        href="https://www.xxxxxxx.com.cn/retail/"
+                        role="option"
+                        class="cc-gn-searchresults-link cc-gn-searchresults-link-defaultlinks"
+                        data-query="no keyword"
+                        data-section="defaultlinks"
+                        data-items="5"
+                        data-index="1"
+                        data-label="查找零售店"
+                        data-analytics-click="eVar23: {data-query} | {data-section} | {data-items} | {data-label} | {data-index}, events:event50"
+                        >查找零售店</a
+                      >
+                    </li>
+                    <li
+                      class="cc-gn-searchresults-item cc-gn-searchresults-animated"
+                      role="presentation"
+                    >
+                      <a
+                        href="https://www.xxxxxxx.com.cn/airpods/"
+                        role="option"
+                        class="cc-gn-searchresults-link cc-gn-searchresults-link-defaultlinks"
+                        data-query="no keyword"
+                        data-section="defaultlinks"
+                        data-items="5"
+                        data-index="2"
+                        data-label="AirPods"
+                        data-analytics-click="eVar23: {data-query} | {data-section} | {data-items} | {data-label} | {data-index}, events:event50"
+                        >AirPods</a
+                      >
+                    </li>
+                    <li
+                      class="cc-gn-searchresults-item cc-gn-searchresults-animated"
+                      role="presentation"
+                    >
+                      <a
+                        href="https://www.xxxxxxx.com.cn/airtag/"
+                        role="option"
+                        class="cc-gn-searchresults-link cc-gn-searchresults-link-defaultlinks"
+                        data-query="no keyword"
+                        data-section="defaultlinks"
+                        data-items="5"
+                        data-index="3"
+                        data-label="AirTag"
+                        data-analytics-click="eVar23: {data-query} | {data-section} | {data-items} | {data-label} | {data-index}, events:event50"
+                        >AirTag</a
+                      >
+                    </li>
+                    <li
+                      class="cc-gn-searchresults-item cc-gn-searchresults-animated"
+                      role="presentation"
+                    >
+                      <a
+                        href="https://www.xxxxxxx.com.cn/shop/goto/giftcards"
+                        role="option"
+                        class="cc-gn-searchresults-link cc-gn-searchresults-link-defaultlinks"
+                        data-query="no keyword"
+                        data-section="defaultlinks"
+                        data-items="5"
+                        data-index="4"
+                        data-label="App Store 充值卡"
+                        data-analytics-click="eVar23: {data-query} | {data-section} | {data-items} | {data-label} | {data-index}, events:event50"
+                        >充值</a
+                      >
+                    </li>
+                  </ul>
+                  <span
+                    role="status"
+                    class="cc-gn-searchresults-count"
+                    aria-live="polite"
+                    >5 快速链接</span
+                  >
+                </div>
+              </section>
+            </aside>
+          </div>
+          <button
+            id="cc-gn-searchview-close"
+            class="cc-gn-searchview-close"
+            aria-label="取消搜索"
+          >
+            <span class="cc-gn-searchview-close-wrapper">
+              <span class="cc-gn-searchview-close-left"></span>
+              <span class="cc-gn-searchview-close-right"></span>
+            </span>
+          </button>
+        </aside>
+        <aside class="cc-gn-bagview" data-analytics-region="bag">
+          <div class="cc-gn-bagview-scrim">
+            <span class="cc-gn-bagview-caret cc-gn-bagview-caret-small"></span>
+          </div>
+          <div class="cc-gn-bagview-content" id="cc-gn-bagview-content"></div>
+        </aside>
+      </div>
+    </nav>
+    <div class="cc-gn-blur"></div>
+    <div id="cc-gn-curtain" class="cc-gn-curtain"></div>
+    <div id="cc-gn-placeholder" class="cc-nav-placeholder"></div>
+    <script
+      src="{% static '/home/globalnav/1/zh_CN/scripts/cc-globalnav.built.js' %}"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    {% endblock %}
+    
+    {% block main %}
+    {% endblock %}
+    
+    {% block footer %}
+    <footer
+      class="js"
+      lang="zh-CN"
+      id="cc-globalfooter"
+      data-analytics-region="global footer"
+      role="contentinfo"
+      aria-labelledby="cc-gf-label"
+    >
+      <div class="cc-gf-content">
+        <h2 class="cc-gf-label" id="cc-gf-label">Paint House  网页页脚</h2>
+
+        <nav
+          class="cc-gf-directory with-5-columns"
+          aria-label="Paint House  网站目录"
+          role="navigation"
+        >
+          <!--googleoff: all-->
+          <div class="cc-gf-directory-column">
+            <input
+              class="cc-gf-directory-column-section-state"
+              type="checkbox"
+              id="cc-gf-directory-column-section-state-products"
+            />
+            <div class="cc-gf-directory-column-section">
+              <label
+                class="cc-gf-directory-column-section-label"
+                for="cc-gf-directory-column-section-state-products"
+              >
+                <h3 class="cc-gf-directory-column-section-title">选购及了解</h3>
+              </label>
+              <a
+                href="#cc-gf-directory-column-section-state-products"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-open"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >打开菜单</span
+                >
+              </a>
+              <a
+                href="#"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-close"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >关闭菜单</span
+                >
+              </a>
+              <ul class="cc-gf-directory-column-section-list">
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/gallery/manage"
+                    data-analytics-title="store"
+                    >管理</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="#"
+                    data-analytics-title="ipod touch"
+                    >查询</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="#"
+                    data-analytics-title="airtag"
+                    >导入</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href=""
+                    data-analytics-title="gift cards"
+                    >创建画廊</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="cc-gf-directory-column">
+            <input
+              class="cc-gf-directory-column-section-state"
+              type="checkbox"
+              id="cc-gf-directory-column-section-state-services"
+            />
+            {% comment %} <div class="cc-gf-directory-column-section">
+              <label
+                class="cc-gf-directory-column-section-label"
+                for="cc-gf-directory-column-section-state-services"
+              >
+                <h3 class="cc-gf-directory-column-section-title">服务</h3>
+              </label>
+              <a
+                href="#cc-gf-directory-column-section-state-services"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-open"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >打开菜单</span
+                >
+              </a>
+              <a
+                href="#"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-close"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >关闭菜单</span
+                >
+              </a>
+              <ul class="cc-gf-directory-column-section-list">
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href=""
+                    data-analytics-title="Paint House  music"
+                    >Music</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href=""
+                    data-analytics-title="icloud"
+                    >云</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href=""
+                    data-analytics-title="Paint House  pay"
+                    >Paint House &nbsp;Pay</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href=""
+                    data-analytics-title="Paint House  podcasts"
+                    >Paint House  播客</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href=""
+                    data-analytics-title="app store"
+                    >Store</a
+                  >
+                </li>
+              </ul>
+            </div> {% endcomment %}
+            <input
+              class="cc-gf-directory-column-section-state"
+              type="checkbox"
+              id="cc-gf-directory-column-section-state-accounts"
+            />
+            <div class="cc-gf-directory-column-section">
+              <label
+                class="cc-gf-directory-column-section-label"
+                for="cc-gf-directory-column-section-state-accounts"
+              >
+                <h3 class="cc-gf-directory-column-section-title">账户</h3>
+              </label>
+              <a
+                href="#cc-gf-directory-column-section-state-accounts"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-open"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >打开菜单</span
+                >
+              </a>
+              <a
+                href="#"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-close"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >关闭菜单</span
+                >
+              </a>
+              <ul class="cc-gf-directory-column-section-list">
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href=""
+                    data-analytics-title="manage your id"
+                    data-analytics-exit-link=""
+                    >管理你的ph ID</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href=""
+                    data-analytics-title="store account"
+                    >Paint House 账户</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href=""
+                    data-analytics-title="icloud.com"
+                    data-analytics-exit-link=""
+                    >云服务</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="cc-gf-directory-column">
+            <input
+              class="cc-gf-directory-column-section-state"
+              type="checkbox"
+              id="cc-gf-directory-column-section-state-storeservices"
+            />
+            <div class="cc-gf-directory-column-section">
+              <label
+                class="cc-gf-directory-column-section-label"
+                for="cc-gf-directory-column-section-state-storeservices"
+              >
+                <h3 class="cc-gf-directory-column-section-title">
+                  Paint House  Store 商店
+                </h3>
+              </label>
+              <a
+                href="#cc-gf-directory-column-section-state-storeservices"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-open"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >打开菜单</span
+                >
+              </a>
+              <a
+                href="#"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-close"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >关闭菜单</span
+                >
+              </a>
+              <ul class="cc-gf-directory-column-section-list">
+                {% comment %} <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="find a store"
+                    >查找服务点</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="genius bar"
+                    >讲堂</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="today at Paint House "
+                    >Today at Paint House </a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="Paint House  camp"
+                    >Paint House  夏令营</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href=""
+                    data-analytics-title="Paint House  store app"
+                    data-analytics-exit-link=""
+                    >App</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="refurbished and clearance"
+                    >翻新和优惠</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/cn/shop/goto/ww/financing"
+                    data-analytics-title="financing"
+                    >分期付款</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="Paint House  trade in"
+                    >Paint House &nbsp;Trade&nbsp;In 换购计划</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="order status"
+                    >订单状态</a
+                  >
+                </li> {% endcomment %}
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="shopping help"
+                    >选购帮助</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="cc-gf-directory-column">
+            <input
+              class="cc-gf-directory-column-section-state"
+              type="checkbox"
+              id="cc-gf-directory-column-section-state-business"
+            />
+            <div class="cc-gf-directory-column-section">
+              <label
+                class="cc-gf-directory-column-section-label"
+                for="cc-gf-directory-column-section-state-business"
+              >
+                <h3 class="cc-gf-directory-column-section-title">商务应用</h3>
+              </label>
+              <a
+                href="#cc-gf-directory-column-section-state-business"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-open"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >打开菜单</span
+                >
+              </a>
+              <a
+                href="#"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-close"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >关闭菜单</span
+                >
+              </a>
+              <ul class="cc-gf-directory-column-section-list">
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="Paint House  and business"
+                    >商务合作</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="shop for business"
+                    >商务选购</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <input
+              class="cc-gf-directory-column-section-state"
+              type="checkbox"
+              id="cc-gf-directory-column-section-state-education"
+            />
+            {% comment %} <div class="cc-gf-directory-column-section">
+              <label
+                class="cc-gf-directory-column-section-label"
+                for="cc-gf-directory-column-section-state-education"
+              >
+                <h3 class="cc-gf-directory-column-section-title">教育功能</h3>
+              </label>
+              <a
+                href="#cc-gf-directory-column-section-state-education"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-open"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >打开菜单</span
+                >
+              </a>
+              <a
+                href="#"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-close"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >关闭菜单</span
+                >
+              </a>
+              <ul class="cc-gf-directory-column-section-list">
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="Paint House  and education"
+                    >Paint House  与教育</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="shop for university"
+                    >高校师生购买</a
+                  >
+                </li>
+              </ul>
+            </div> {% endcomment %}
+          </div>
+          <div class="cc-gf-directory-column">
+            <input
+              class="cc-gf-directory-column-section-state"
+              type="checkbox"
+              id="cc-gf-directory-column-section-state-responsibility"
+            />
+            {% comment %} <div class="cc-gf-directory-column-section">
+              <label
+                class="cc-gf-directory-column-section-label"
+                for="cc-gf-directory-column-section-state-responsibility"
+              >
+                <h3 class="cc-gf-directory-column-section-title">
+                  Paint House  价值观
+                </h3>
+              </label>
+              <a
+                href="#cc-gf-directory-column-section-state-responsibility"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-open"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >打开菜单</span
+                >
+              </a>
+              <a
+                href="#"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-close"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >关闭菜单</span
+                >
+              </a>
+              <ul class="cc-gf-directory-column-section-list">
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title=""
+                    >辅助功能</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="environment"
+                    >责任</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="privacy"
+                    >隐私</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="supplier responsibility"
+                    >供应商责任</a
+                  >
+                </li>
+              </ul>
+            </div> {% endcomment %}
+            <input
+              class="cc-gf-directory-column-section-state"
+              type="checkbox"
+              id="cc-gf-directory-column-section-state-about"
+            />
+            <div class="cc-gf-directory-column-section">
+              <label
+                class="cc-gf-directory-column-section-label"
+                for="cc-gf-directory-column-section-state-about"
+              >
+                <h3 class="cc-gf-directory-column-section-title">
+                  关于 Paint House 
+                </h3>
+              </label>
+              <a
+                href="#cc-gf-directory-column-section-state-about"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-open"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >打开菜单</span
+                >
+              </a>
+              <a
+                href="#"
+                class="cc-gf-directory-column-section-anchor cc-gf-directory-column-section-anchor-close"
+              >
+                <span class="cc-gf-directory-column-section-anchor-label"
+                  >关闭菜单</span
+                >
+              </a>
+              <ul class="cc-gf-directory-column-section-list">
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="newsroom"
+                    >Newsroom</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="Paint House  leadership"
+                    >Paint House 管理层</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="https://www.Paint House .com/careers/cn/"
+                    data-analytics-title="career opportunities"
+                    data-analytics-exit-link=""
+                    >工作机会</a
+                  >
+                </li>
+                {% comment %} <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="job creation"
+                    >创造就业</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="https://www.painthouse.cn/compliance/"
+                    data-analytics-title="ethics and compliance"
+                    data-analytics-exit-link=""
+                    >商业道德与合规性</a
+                  >
+                </li>
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/Paint House events/"
+                    data-analytics-title="events"
+                    >活动</a
+                  >
+                </li> {% endcomment %}
+                <li class="cc-gf-directory-column-section-item">
+                  <a
+                    class="cc-gf-directory-column-section-link"
+                    href="/"
+                    data-analytics-title="contact Paint House "
+                    >联系 Paint House </a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--googleon: all-->
+        </nav>
+
+        <section class="cc-gf-footer">
+          <div class="cc-gf-footer-shop" x-ms-format-detection="none">
+            更多联系方式：<a
+              href="/"
+              data-analytics-title="find an store"
+              >查找你附近的支持点</a
+            >及<a
+              href="https://painthouse.cn/"
+              data-analytics-title="other retailers or resellers"
+              data-analytics-exit-link=""
+              >更多店</a
+            >，
+            <span class="nowrap">或者致电 kiswelrg 或 sean</span>
+          </div>
+          <div class="cc-gf-footer-legal">
+            <div class="cc-gf-footer-legal-copyright">
+              Copyright 保留所有权利。
+            </div>
+            <div class="cc-gf-footer-legal-links">
+              <a
+                class="cc-gf-footer-legal-link"
+                href="/"
+                data-analytics-title="privacy policy"
+                >隐私政策</a
+              >
+              <a
+                class="cc-gf-footer-legal-link"
+                href="/"
+                data-analytics-title="terms of use"
+                >使用条款</a
+              >
+              <a
+                class="cc-gf-footer-legal-link"
+                href="/"
+                data-analytics-title="sales and refunds"
+                >销售政策</a
+              >
+              <a
+                class="cc-gf-footer-legal-link"
+                href="/"
+                data-analytics-title="legal"
+                >法律信息</a
+              >
+              <a
+                class="cc-gf-footer-legal-link"
+                href="/"
+                data-analytics-title="site map"
+                >网站地图</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <script
+          type="text/javascript"
+          src="{% static 'home/globalfooter/scripts/cc-globalfooter.built.js' %}"
+        ></script>
+
+        <script
+          type="text/javascript"
+          src="{% static 'localeswitcher/scripts/localeswitcher.built.js' %}"
+        ></script>
+
+        <p style="margin-top: -20px; margin-bottom: 20px; color: #666">
+          <a
+            href="http://beian.miit.gov.cn/"
+            target="_blank"
+            style="color: #666"
+            onclick='s_objectID="http://beian.miit.gov.cn/_1";return this.s_oc?this.s_oc(e):true'
+            >备案编号XX</a
+          >&nbsp;<a style="color: #666" href="/">营业执照</a
+          >&nbsp;
+          <span class="nowrap">备案</span>
+        </p>
+      </div>
+    </footer>
+
+    <script
+      src="/static/home/main/js/globalbuilt.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+
+    <script
+      src="/static/user/accessibility/scripts/main.built.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+
+    {% endblock %}
+  </body>
+</html>

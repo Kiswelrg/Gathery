@@ -1,0 +1,11 @@
+f(
+    function(){
+        cannot get outer THIS,
+        not sure if data => (){} solves this
+    }
+)
+
+collections.defaultdict: consider converting to a default dict when using in templates
+
+{{ data|default:"3 < 2" }}  {# Bad! Don't do this. #}
+

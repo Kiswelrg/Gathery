@@ -1,0 +1,18 @@
+  :lang(zh) {
+     font-style: normal;
+ }
+ 
+ li li {
+     font-size: 1em;
+ }
+ 
+ :focus {
+     outline: 4px solid rgba(0, 125, 250, 0.6);
+     outline-offset: 1px;
+ }
+ 
+ *,
+ ::after,
+ ::before {
+     box-sizing: border-box;
+ }

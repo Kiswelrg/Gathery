@@ -1,0 +1,229 @@
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fade-in .5s ease-in-out;
+}
+
+.signin-block-container {
+    min-width: 50%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+    min-height: 100%;
+    height: min-content;
+}
+
+.signin-block {
+    width: 100%;
+    min-width: 310px;
+}
+
+.signin-title {
+    font-size: 32px;
+    line-height: 1.125;
+    font-weight: 600;
+    letter-spacing: .004em;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    margin: 14px 0;
+}
+
+.signin-block .signin-description,
+.signin-block .signin-title {
+    max-width: 380px;
+    margin: 5px auto 13px;
+    word-break: break-word;
+}
+
+.signin-description {
+    max-width: 600px;
+}
+
+.form-table {
+    display: table;
+    width: 100%;
+    text-align: left;
+    position: relative;
+}
+
+.form-row {
+    display: table-row;
+}
+
+.form-cell {
+    display: table-cell;
+    vertical-align: top;
+    direction: ltr;
+}
+
+.sign-in .signin-form {
+    max-width: 328px;
+    position: relative;
+    outline: none;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sign-in .form-textbox {
+    font-size: 15px;
+    line-height: 1.29412;
+    font-weight: 400;
+    letter-spacing: -.021em;
+    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    width: 100%;
+    height: 34px;
+    margin-bottom: 14px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #333;
+    text-align: left;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+    background: #fff;
+    background-clip: padding-box;
+}
+
+.signin-form .form-textbox {
+    margin: 0;
+    box-shadow: none;
+    height: 42px;
+    border: 0;
+    border-radius: 6px;
+    border-color: transparent;
+}
+
+.signin-form input.form-textbox {
+    border: 1px solid #d6d6d6;
+}
+
+.signin-form .form-textbox {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.password .form-textbox,
+.password input.form-textbox-text {
+    padding-right: 43px;
+}
+
+.signin-form .password .form-textbox {
+    height: 44px;
+    -webkit-transition: height .2s linear;
+    -o-transition: height .2s linear;
+    transition: height .2s linear;
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.si-remember-password {
+    padding: 5px 0 10px;
+}
+
+.form-inputbox {
+    position: relative;
+}
+
+.form-inputbox input {
+    font-size: 15px;
+    line-height: 1.23536;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    width: 100%;
+    height: 3.29412rem;
+    border-radius: 12px;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+    margin-bottom: 0.82353rem;
+    padding: 1.05882rem 0.94118rem 0;
+    text-align: left;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.form-textbox-label {
+    position: absolute;
+    pointer-events: none;
+    transition-timing-function: ease-in;
+    transition-duration: .125s;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: calc(100% - 32px);
+    left: 1rem;
+    font-size: 12px;
+    line-height: 1.33337;
+    font-weight: 400;
+    letter-spacing: 0;
+    top: 0.58824rem;
+    color: #6e6e73;
+}
+
+.form-message-wrapper {
+    font-size: 12px;
+    line-height: 1.33337;
+    font-weight: 400;
+    letter-spacing: 0;
+    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: #fca5a5;
+    position: relative;
+    margin-bottom: 0.70588rem;
+    display: flex;
+    padding: 0 10px;
+}
+
+.form-message-mark {
+    height: 14px;
+    width: 21px;
+    padding: 2px 4px 0 5px;
+    display: none;
+}
+
+.vcode-img {
+    position: absolute;
+    height: 35px;
+    width: 90px;
+    right: 10px;
+    top: 10px;
+}
+
+.signin-button {
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 980px;
+    background: #0071e3;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.17648;
+    font-weight: 400;
+    letter-spacing: 0;
+    min-width: 28px;
+    padding: 14px 31px;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    border-radius: 12px;
+    white-space: normal;
+    display: inline-block;
+    background-color: whitesmoke;
+    border-color: transparent;
+    color: #363636;
+}

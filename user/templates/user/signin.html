@@ -1,0 +1,219 @@
+{% extends "main_user.html"%}
+
+<!DOCTYPE html>
+<html style="background-color: #fafafa" dir="ltr" lang="zh">
+  <head>
+    {% block head_content %} {{ block.super }} {% endblock %}
+
+    <title>{% block title %}SIGN IN{% endblock %}</title>
+
+    {% load static %}
+
+    {% block cdnjs %}
+    {{ block.super }}
+    {% endblock %}
+
+    {% block globalcss %}
+    {{ block.super }}
+    {% endblock %}
+
+    {% block templatecss %}
+    {{ block.super }}
+    {% endblock %}
+
+    {% block templatescript %}
+    {% endblock %}
+
+    {% block main_font %}
+    {% endblock %}
+  </head>
+
+  <body style="--global-nav-ad-bar-height: 0px !important">
+    <div id="root">
+      {% block globalnav %}
+      {{ block.super }}
+      {% endblock %}
+
+      <div dir class="app-body-container app-body-container-auth">
+        {% block localnav %}
+        {{ block.super }}
+        {% endblock %}
+
+        {% block main %}
+        <main role="main">
+          <div class="landing landing--sign-in landing--transition">
+            <div class="landing__top">
+              <div aria-hidden="true" class="landing__animation">
+                <div class="landing__rings">
+                  <i class="fas fa-users user-outer-icon"></i>
+                </div>
+              </div>
+              <div class="landing__interaction">
+                <div class="sign-in">
+                  <div
+                    id="sign-in__auth"
+                    class="sign-in__auth sign-in__auth--full"
+                  >
+                    <div
+                      class="signin-block-container widget-container restrict-min-content restrict-max-wh fade-in"
+                    >
+                      <div class="signin-block" id="signin-app">
+                        <div class="signin-wrapper"></div>
+                        <h1 class="signin-title">Paint House&nbsp;ID</h1>
+                        <p class="signin-description">登录您的 Paint House 账户</p>
+                        <div class="signin-field-container">
+                          <form
+                            method="POST"
+                            id=""
+                            action="/u/login/"
+                            autocomplete=""
+                          >
+                            {% csrf_token %}
+                            <div class="signin-form" id="sign-in-form">
+                              <div class="form-table">
+                                <div class="form-inputbox">
+                                  <input
+                                    autofocus
+                                    required
+                                    type="text"
+                                    class="input is-normal"
+                                    id="signIn.account"
+                                    name="username"
+                                    maxlength="120"
+                                    autocomplete="off"
+                                  />
+                                  <span
+                                    class="account-name-input-title form-textbox-label"
+                                    >ID</span
+                                  >
+                                  <div
+                                    v-show="tips.id.show"
+                                    class="form-message-wrapper"
+                                    id="signIn.Id_error"
+                                  >
+                                    <img
+                                      src="../static/widget/loginAuth/img/marks/exclamation-circle.svg"
+                                      alt=""
+                                      class="form-message-mark"
+                                    />
+                                    <span class="form-message"
+                                      >[[ tips.id.text ]]</span
+                                    >
+                                  </div>
+                                </div>
+                                <div class="form-inputbox">
+                                  <input
+                                    required
+                                    type="password"
+                                    class="input is-normal"
+                                    id="signIn.password"
+                                    name="pwd"
+                                    maxlength="512"
+                                    autocomplete="off"
+                                  />
+                                  <span
+                                    class="password-input-title form-textbox-label"
+                                    >密码</span
+                                  >
+                                  <div
+                                    v-show="tips.password.show"
+                                    class="form-message-wrapper"
+                                    id="signIn.Pwd_error"
+                                  >
+                                    <img
+                                      src="../static/widget/loginAuth/img/marks/exclamation-circle.svg"
+                                      alt=""
+                                      class="form-message-mark"
+                                    />
+                                    <span class="form-message"
+                                      >[[ tips.password.text ]]</span
+                                    >
+                                  </div>
+                                </div>
+                                <div class="form-inputbox">
+                                  <input
+                                    required
+                                    type="text"
+                                    class="input is-normal"
+                                    id="signIn.vcode"
+                                    name="vcode"
+                                    maxlength="10"
+                                    autocomplete="off"
+                                  />
+                                  <span
+                                    class="vcode-input-title form-textbox-label"
+                                    >验证码</span
+                                  >
+                                  <img
+                                    src="/u/vcode/"
+                                    alt="verification code"
+                                    class="vcode-img"
+                                    id="vcode_img"
+                                  />
+                                  <div
+                                    v-show="tips.vcode.show"
+                                    class="form-message-wrapper"
+                                    id="signIn.Vcode_error"
+                                  >
+                                    <img
+                                      src="../static/widget/loginAuth/img/marks/exclamation-circle.svg"
+                                      alt=""
+                                      class="form-message-mark"
+                                    />
+                                    <span class="form-message"
+                                      >[[ tips.vcode.text ]]</span
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="si-remember-password">
+                                <label class="checkbox">
+                                  <input type="checkbox" />
+                                  记住我的Paint House ID
+                                </label>
+                              </div>
+                              <div
+                                class="signin-submit-button"
+                                id="signin_submit"
+                              >
+                                <button
+                                  id="sign-in"
+                                  class="signin-button"
+                                  type="submit"
+                                >
+                                  <span aria-hidden="true">登录</span>
+                                </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="signin-footer"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        
+        {% endblock %}
+      </div>
+    </div>
+
+
+
+    {% block footer %} {{ block.super }} {% endblock %}
+
+    {% block endjs %}
+    {{ block.super }}
+    <script src="{% static 'home/main/js/vue.global.js' %}"></script>
+    <script
+      type="text/javascript"
+      src="{% static 'user/signin/js/signin.js' %}"
+    ></script>
+    
+    {% endblock %}
+
+  </body>
+</html>

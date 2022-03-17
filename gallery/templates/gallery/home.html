@@ -1,0 +1,282 @@
+{% extends "main_guest.html" %}
+
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top" style="background-color: #fafafa">
+  <head>
+    {% block head_content %}
+    {{ block.super }}
+    {% endblock %}
+
+    <title>{% block title %}{{ block.super }}{% endblock %}</title>
+
+    {% load static %}
+    
+    {% block cdnjs %}
+    {{ block.super }}
+    {% endblock %}
+    
+    {% block globalcss %}
+    {{ block.super }}
+    {% endblock %}
+    
+    {% block templatecss %}
+    {{ block.super }}
+    {% endblock %}
+    
+    {% block templatescript %}
+    {{ block.super }}
+    {% endblock %} 
+    
+    {% block main_font %}
+    {{ block.super }}
+    {% endblock %}
+  </head>
+
+  <body style="--global-nav-ad-bar-height: 0px !important">
+    {% block globalnav %}
+    {{ block.super }}
+    {% endblock %} 
+    
+    {% block main %}
+    
+    <main id="main" class="main" role="main" data-page-type="overview">
+      <section
+        class="section section-speech section-tiles-grid"
+        data-anim-scroll-group="Section - Speech"
+      >
+        <div class="section-content">
+          <h2
+            class="section-headline typography-section-headline large-8 large-centered small-12"
+          >
+            你的一举一动，<br />都是指挥棒。
+          </h2>
+          <div class="grid-container">
+            <section
+              class="grid-item full grid-item-voice-control card-voice-control slide-in"
+              data-component-list="ModalComponent CardSlideIn"
+              data-analytics-section-engagement="name:voice control"
+            >
+              <div class="header-content">
+                <h3 class="grid-headline typography-grid-headline">语音控制</h3>
+                <p class="grid-copy typography-grid-copy">
+                  动动嘴，<br />就能掌控全场。
+                </p>
+              </div>
+              <noscript>
+                <style>
+                  picture#overview-voice-control-1 {
+                    display: none !important;
+                  }
+                </style>
+              </noscript>
+              <picture
+                id="overview-voice-control-1"
+                class="overview-voice-control"
+                data-picture-lazy-load=""
+                data-picture-loaded=""
+              >
+                <source
+                  srcset="{% static 'home/main/img/AmaDablam.jpg' %} 1x, {% static 'home/main/img/AmaDablam.jpg' %} 2x"
+                  media="(max-width:734px)"
+                />
+                <source
+                  srcset="{% static 'home/main/img/AmaDablam.jpg' %} 1x, {% static 'home/main/img/AmaDablam.jpg' %} 2x"
+                  media="(max-width:1068px)"
+                />
+                <source
+                  srcset="{% static 'home/main/img/AmaDablam.jpg' %} 1x, {% static 'home/main/img/AmaDablam.jpg' %} 2x"
+                  media="(min-width:0px)"
+                />
+                <img
+                  src="{% static 'home/main/img/AmaDablam.jpg' %}"
+                  class="overview-voice-control-img"
+                  width="100%"
+                  height="100%"
+                  alt="一系列语音控制命令 - 打开相机，轻点拍照，轻点照片，轻点共享。"
+                />
+              </picture>
+              <noscript>
+                <picture class="overview-voice-control">
+                  <source
+                    srcset="{% static 'home/main/img/AmaDablam.jpg' %} 1x, {% static 'home/main/img/AmaDablam.jpg' %} 2x"
+                    media="(max-width:734px)"
+                  />
+                  <source
+                    srcset="{% static 'home/main/img/AmaDablam.jpg' %} 1x, {% static 'home/main/img/AmaDablam.jpg' %} 2x"
+                    media="(max-width:1068px)"
+                  />
+                  <source
+                    srcset="{% static 'home/main/img/AmaDablam.jpg' %} 1x, {% static 'home/main/img/AmaDablam.jpg' %} 2x"
+                    media="(min-width:0px)"
+                  />
+                  <img
+                    src="{% static 'home/main/img/AmaDablam.jpg' %}"
+                    class="overview-voice-control-img"
+                    width="100%"
+                    height="100%"
+                    alt="一系列语音控制命令 - 打开相机，轻点拍照，轻点照片，轻点共享。"
+                  />
+                </picture>
+              </noscript>
+              <button
+                class="icon-wrapper modal-trigger"
+                data-modal-trigger=""
+                tabindex="-1"
+                data-analytics-title="open - voice control"
+                data-analytics-click="prop3:open - voice control"
+                data-analytics-intrapage-link=""
+              >
+                <i class="icon fas fa-plus-circle" tabindex="0"></i>
+                <span class="visuallyhidden">进一步了解语音控制</span>
+              </button>
+            </section>
+            <section
+              class="grid-item half vert-center theme-dark grid-item-eye-tracking card-eye-tracking slide-in"
+              data-component-list="ModalComponent CardSlideIn "
+              data-analytics-section-engagement="name:eye tracking"
+            >
+              <div class="header-content">
+                <h3 class="grid-headline typography-grid-headline">
+                  适用于 iPadOS 的眼球跟踪功能
+                </h3>
+              </div>
+              <div class="main-content">
+                <div
+                  role="img"
+                  aria-label="看向标题的眼睛表情符号。"
+                  data-dynamic-aria=""
+                  data-animated-aria="眼睛表情符号从左向右移动，同时标题跟随其视线移动的动画。"
+                  data-static-aria="看向标题的眼睛表情符号。"
+                  data-event-name="eye-tracking"
+                >
+                  <div
+                    data-inline-media-props=""
+                    class="inline-media eye-tracking"
+                  >
+                    <video
+                      data-src="/105/media/cn/accessibility/2021/61578763-87f7-4dfe-a16f-76ca90775492/anim/tracking/"
+                      playsinline=""
+                      muted=""
+                      aria-hidden="true"
+                      preload="none"
+                    ></video>
+                    <figure class="inline-video-frame-start"></figure>
+                    <figure class="inline-video-frame-end"></figure>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="icon-wrapper modal-trigger"
+                data-modal-trigger=""
+                tabindex="-1"
+                data-analytics-title="open - eye tracking"
+                data-analytics-click="prop3:open - eye tracking"
+                data-analytics-intrapage-link=""
+              >
+                <i class="icon fas fa-plus-circle" tabindex="0"></i>
+                <span class="visuallyhidden"
+                  >进一步了解适用于 iPadOS 的眼球跟踪功能</span
+                >
+              </button>
+            </section>
+            <section
+              class="grid-item half animation-static vert-center grid-item-switch-control card-switch-control slide-in"
+              data-component-list="ModalComponent CardSlideIn"
+              data-analytics-section-engagement="name:switch control"
+            >
+              <div class="header-content">
+                <h3 class="grid-headline typography-grid-headline">切换控制</h3>
+                <p class="grid-copy typography-grid-copy">操纵自如，很自由。</p>
+              </div>
+              <noscript>
+                <style>
+                  picture#overview-switch-control-1 {
+                    display: none !important;
+                  }
+                </style>
+              </noscript>
+              <picture
+                id="overview-switch-control-1"
+                class="overview-switch-control"
+                data-picture-lazy-load=""
+                data-picture-loaded=""
+              >
+                <source
+                  srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                  media="(max-width:734px)"
+                />
+                <source
+                  srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                  media="(max-width:1068px)"
+                />
+                <source
+                  srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                  media="(min-width:0px)"
+                />
+                <img
+                  src="{% static 'home/main/img/fluid.jpg' %}"
+                  class="overview-switch-control-img"
+                  width="100%"
+                  height="100%"
+                  alt="地图 app 中的搜索功能显示切换控制面板"
+                />
+              </picture>
+              <noscript>
+                <picture class="overview-switch-control">
+                  <source
+                    srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                    media="(max-width:734px)"
+                  />
+                  <source
+                    srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                    media="(max-width:1068px)"
+                  />
+                  <source
+                    srcset="{% static 'home/main/img/fluid.jpg' %} 1x, {% static 'home/main/img/fluid.jpg' %} 2x"
+                    media="(min-width:0px)"
+                  />
+                  <img
+                    src="{% static 'home/main/img/fluid.jpg' %}"
+                    class="overview-switch-control-img"
+                    width="100%"
+                    height="100%"
+                    alt="地图 app 中的搜索功能显示切换控制面板"
+                  />
+                </picture>
+              </noscript>
+              <button
+                class="icon-wrapper modal-trigger"
+                data-modal-trigger=""
+                tabindex="-1"
+                data-analytics-title="open - switch control"
+                data-analytics-click="prop3:open - switch control"
+                data-analytics-intrapage-link=""
+              >
+                <i class="icon fas fa-plus-circle" tabindex="0"></i
+                ><span class="visuallyhidden">进一步了解切换控制</span>
+              </button>
+            </section>
+          </div>
+          <div
+            class="section-footer"
+            data-analytics-activitymap-region-id="section footer"
+          >
+            <a
+              href="/gallery/search"
+              data-analytics-title="all mobility features"
+              class="icon-wrapper button button-super button-outlined typography-section-button"
+              ><span class="icon-copy">全部肢体活动能力辅助功能</span
+              ><span class="icon icon-after more"></span
+            ></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    {% endblock %} 
+    
+    {% block footer %}
+    {{ block.super }}
+    {% endblock %}
+  </body>
+</html>

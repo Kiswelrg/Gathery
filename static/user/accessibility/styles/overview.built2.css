@@ -1,0 +1,101 @@
+.grid-item-voiceover .header-content {
+    max-width: 323px;
+}
+
+@media only screen and (max-width: 1068px) {
+    .grid-item-voiceover .header-content {
+        max-width:260px
+    }
+}
+
+@media only screen and (max-width: 734px) {
+    .grid-item-voiceover .header-content {
+        max-width:220px
+    }
+}
+
+
+/* 箭头居中问题 */
+.icon-wrapper .icon, .icon-wrapper .more::after, .icon-wrapper .icon-before::before, .icon-wrapper .icon-after::after{
+    position:relative
+}
+
+.section-reading .grid-item-spoken-content .highlighted-words .margin-right.word{
+    margin-right:0
+}
+
+.grid-item-speak-selection .grid-copy .line.line-middle {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.grid-item-speak-selection .grid-copy .start:before{
+   top:-26px;
+}
+.grid-item-speak-selection .grid-copy .end:after{
+   bottom:-28px;
+}
+.grid-item-speak-selection .grid-copy .line.line-top{
+   padding-bottom:5px;
+}
+.grid-item-speak-selection .grid-copy .line.line-bottom{
+  padding-bottom:5px;
+  padding-top: 5px;
+}
+@media only screen and (max-width: 1068px) {
+    .grid-item-speak-selection .grid-copy .start:before{
+		top:-16px;
+	}
+	.grid-item-speak-selection .grid-copy .end:after{
+	   bottom:-17px;
+	}
+	
+}
+@media only screen and (max-width: 734px) {
+ .grid-item-speak-selection .grid-copy .line.line-top{
+	   padding-bottom:0;
+     }
+    
+}	
+@media only screen and (max-width: 1068px) {
+    .grid-item-speak-selection .grid-copy .line {
+        padding-top: 4px;
+    }
+}
+
+@media only screen and (max-width: 734px) {
+    .grid-item-speak-selection .grid-copy .line.line-middle {
+        padding-right: 0px;
+        padding-top: 0px;
+    }
+}
+.grid-item-sensory-alerts .inline-media figure.inline-video-frame-end{
+    opacity:1;
+}
+.grid-item-sensory-alerts .inline-media video {
+    visibility: hidden !important;
+}
+
+.pfstyle{font-family: 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;font-size: 15px;}
+
+.grid-item-sound-recognition .overview-sound-recognition-notification {
+    bottom: 125px;
+    
+}
+
+@media only screen and (max-width: 1068px) {
+    .grid-item-sound-recognition .overview-sound-recognition-notification { 
+        bottom: 75px;
+    }
+}
+
+@media only screen and (max-width: 734px) {
+    .grid-item-sound-recognition .overview-sound-recognition-notification {
+        bottom: 142px;
+    }
+}
+
+/* underline */
+.icon-wrapper .nowrap.icon.icon-after.more::after {
+	display: inline-block;	
+}

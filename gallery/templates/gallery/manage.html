@@ -1,0 +1,535 @@
+{% extends "main_user.html" %}
+
+<!DOCTYPE html>
+<html style="background-color: #fafafa" dir="ltr" lang="zh">
+  <head>
+    {% block head_content %} {{ block.super }} {% endblock %}
+
+    <title>{% block title %}Manage Gallery{% endblock %}</title>
+
+    {% load static %}
+
+    {% block cdnjs %}
+    {{ block.super }}
+    {% endblock %}
+
+    {% block globalcss %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'home/globalnav/1/zh_CN/style/cc-globalnav.built.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'home/globalfooter/style/cc-globalfooter.built.css' %}"
+    />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static 'home/main/css/tailwind.min.css' %}"
+    />
+    {% endblock %}
+
+    {% block templatecss %}
+    {{ block.super }}
+    
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static '/gallery/manage/css/manage.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'home/main/css/components.css' %}"
+    />
+    {% endblock %}
+
+    {% block templatescript %}
+    {% endblock %}
+
+    {% block main_font %}
+    {% endblock %}
+  </head>
+
+  <body style="--global-nav-ad-bar-height: 0px !important">
+    <div id="root">
+      {% block globalnav %}
+      {{ block.super }}
+      {% endblock %}
+
+      <div dir class="app-body-container app-body-container-auth">
+        
+
+        {% block localnav %}
+        {% with ln_title='Manage Gathery&nbsp;' %}
+        {{ block.super }}
+        {% endwith %}
+        {% endblock %}
+
+        {% block main %}
+        
+        
+        {% endblock %}
+      </div>
+    </div>
+
+    {% block container %}
+    <div class="container" id="manage-app">
+			<div class="left-sidebar" id="left-sidebar">
+				<div class="ls-container">
+					<div class="navigation">
+						<ol class="nav-links">
+							<li class="here">
+								<a href="" class="nav-link">
+									<div class="d-flex ai-center">
+										<div class="link-text">
+											Home
+										</div>
+								  </div>
+								</a>
+							</li>
+							<li></li>
+							<li></li>
+						</ol>
+					</div>
+				</div>
+
+			</div>
+
+      <div id="content" class="pt0">
+				<div class="mainbar">
+          <div class="staff-container flex flex-col" id="staff-manage">
+            <div class="title">
+              <div class="title-head">
+                Staff
+              </div>
+            </div>
+            <div class="title-detail">
+              <div class="title-help">Listed staff by gallery</div>
+              <div class="title-button">
+
+                <div class="mt-1 relative select-menu">
+                  <button
+
+                    @click="toggleDropdown($event)"
+                    v-click-outside="closeDropdown"
+                    type="button" class="g-select-button max-w-sm relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                    <span class="flex items-center pointer-events-none">
+                      <img src="{% static 'img/gallery.jpg' %}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
+                      <span id="staff-g-select" class="ml-3 block truncate"> gallery xx </span>
+                    </span>
+                    <span class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <!-- Heroicon name: solid/selector -->
+                      <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <ul class="dropdown-menu opacity-0 z-0 absolute mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+                    <!--
+                      Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+
+                      Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
+                    -->
+                    
+                    <li 
+                      v-for="(g, index) in Gs"
+                      :gid="g.galleryId"
+                      class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9"
+                      {% comment %} :class="{'text-white bg-indigo-600 selected' : !index , 'text-gray-900': index }" {% endcomment %}
+                      id="listbox-option-0"
+                      role="option"
+                      @click="selectGallery($event, 'staff')">
+                      <div class="flex items-center pointer-events-none">
+                        <img src="{% static 'img/gallery.jpg' %}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
+                        <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                        <span class="name font-normal ml-3 block truncate"> [[ g.name ]]  </span>
+                      </div>
+
+                      <!--
+                        Checkmark, only display for selected option.
+
+                        Highlighted: "text-white", Not Highlighted: "text-indigo-600"
+                      -->
+                      <span class="text-white absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                        <!-- Heroicon name: solid/check -->
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                      </span>                     
+                    </li>
+                    
+
+                    <!-- More items... -->
+                  </ul>
+                </div>
+              
+              </div>
+            </div>
+            <button
+              @click="openStaffEdit(undefined, 1)"
+              class="self-end button is-success is-light mb-4">Add an Employee</button>
+            <div class="staff-list">
+              <div class="staff-table">
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <div class="flex flex-col">
+                  <div class="overflow-x-auto">
+                    <div class="align-middle inline-block min-w-full">
+                      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="block max-h-96 overflow-auto min-w-full divide-y divide-gray-200">
+                          <thead class="bg-gray-50">
+                            <tr>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">employee</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Warehouse</th>
+                              <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Join</th>
+                              <th scope="col" class="relative px-4 py-3">
+                                <span class="sr-only">Edit</span>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody class="bg-white divide-y divide-gray-200">
+                            
+                            <tr>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 h-10 w-10">
+                                    <img class="h-10 w-10 rounded-full" src="{% static 'img/sean.jpg' %}" alt="">
+                                  </div>
+                                  <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">Sean Fucker</div>
+                                    <div class="text-sm text-gray-500">sean@example.com</div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
+                                <div class="text-sm text-gray-500">Optimization</div>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Active </span>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Manager</td>
+                              <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 h-10 w-10">
+                                    <img class="h-10 w-10 rounded-full" src="{% static 'img/skye.png' %}" alt="">
+                                  </div>
+                                  <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">Skye Kiswelrg</div>
+                                    <div class="text-sm text-gray-500">kiswelrg@gmail.com</div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Full Stack Technician</div>
+                                <div class="text-sm text-gray-500">Everything</div>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Active </span>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Admin</td>
+                              <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                              </td>
+                            </tr>
+
+                            <tr
+                              v-for="s in Staff"
+                              :sid="s.employee_un"
+                              >
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 h-10 w-10">
+                                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
+                                  </div>
+                                  <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900"> [[ s.employee_n ]] </div>
+                                    <div class="text-sm text-gray-500"> [[ s.employee_id ]] </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">  [[ stfRole[s.role] ]] </div>
+                                <div class="text-sm text-gray-500"> [[ s.privilege ]] </div>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">  [[ stfStatus[s.status] ]] </span>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">  [[ s.warehouse__name ]] </div>
+                                <div class="text-sm text-gray-500"> [[ s.warehouse__urlCode ]] </div>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">  [[ s.date_join ]] </span>
+                              </td>
+                              <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a class="text-indigo-600 hover:text-indigo-900" @click="openStaffEdit(s, 0)">Edit</a>
+                              </td>
+                            </tr>
+
+                            <!-- More people... -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
+
+              </div>
+            </div>
+          </div>
+
+          <div class="staff-container flex flex-col" id="warehouse-manage">
+            <div class="title">
+              <div class="title-head">
+                Warehouses
+              </div>
+            </div>
+            <div class="title-detail">
+              <div class="title-help">Warehouses of a gallery</div>
+              <div class="title-button">
+                
+                <div class="mt-1 relative select-menu">
+                  <button
+                    @click="toggleDropdown($event)"
+                    v-click-outside="closeDropdown"
+                    type="button" class="g-select-button max-w-sm relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
+                    <span class="flex items-center pointer-events-none">
+                      <img src="{% static 'img/gallery.jpg' %}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
+                      <span id="warehouse-g-select" class="ml-3 block truncate"> gallery xx </span>
+                    </span>
+                    <span class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <!-- Heroicon name: solid/selector -->
+                      <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <ul class="dropdown-menu opacity-0 z-0 absolute mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-3">
+                    <!--
+                      Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+
+                      Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
+                    -->
+                    
+                    <li 
+                      v-for="(g, index) in Gs"
+                      :gid="g.galleryId"
+                      class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9"
+                      {% comment %} :class="{'text-white bg-indigo-600 selected' : !index , 'text-gray-900': index }" {% endcomment %}
+                      id="listbox-option-0"
+                      role="option"
+                      @click="selectGallery($event, 'warehouse')">
+                      <div class="flex items-center pointer-events-none">
+                        <img src="{% static 'img/gallery.jpg' %}" alt="" class="flex-shrink-0 h-6 w-6 rounded-full">
+                        <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+                        <span class="name font-normal ml-3 block truncate"> [[ g.name ]]  </span>
+                      </div>
+
+                      <!--
+                        Checkmark, only display for selected option.
+
+                        Highlighted: "text-white", Not Highlighted: "text-indigo-600"
+                      -->
+                      <span class="text-white absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                        <!-- Heroicon name: solid/check -->
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                      </span>                     
+                    </li>
+                    
+
+                    <!-- More items... -->
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+            <button
+              @click="openWarehouseEdit(undefined, 1)"
+              class="self-end button is-success is-light mb-4">Add a Warehouse</button>
+            <div class="staff-list">
+              <div class="staff-table">
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <div class="flex flex-col">
+                  <div class="overflow-x-auto">
+                    <div class="align-middle inline-block min-w-full">
+                      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="block max-h-96 overflow-auto min-w-full divide-y divide-gray-200">
+                          <thead class="bg-gray-50">
+                            <tr>
+                              <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                              <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created/Added</th>
+                              <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                              <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Temporary Staff Num</th>
+                              <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Art Num</th>
+                              <th scope="col" class="relative px-3 py-3">
+                                <span class="sr-only">Edit</span>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody class="bg-white divide-y divide-gray-200">
+                            <tr
+                              v-for="w in Ws"
+                              :wid="w.w_id"
+                              >
+                              <td class="px-3 py-4 whitespace-normal">
+                                <div class="text-sm text-gray-900"> [[ w.name ]] </div>
+                                <div class="text-sm text-gray-500"> [[ w.w_id ]] </div>
+                              </td>
+                              <td class="px-3 py-4 whitespace-normal">
+                                <div class="text-sm text-gray-900"> [[ w.date_create ]] </div>
+                                <div class="text-sm text-gray-500">  [[ w.date_add ]] </div>
+                              </td>
+                              <td class="px-3 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> [[ whStatus[w.status] ]] </span>
+                              </td>
+                              <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500"> [[ w.temporary_staff_num ]] </td>
+                              <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500"> [[ w.art_num ]] </td>
+                              <td class="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900" @click="openWarehouseEdit(w, 0)">Edit</a>
+                              </td>
+                            </tr>
+
+                            <!-- More people... -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+				</div>
+
+				<div class="sidebar">
+					
+				</div>
+
+      </div>
+
+    <div
+      v-show="editWidget.staff.show||editWidget.warehouse.show"
+      class="edit-widget fixed w-full h-full inset-0 "
+      >
+      <div class="edit-wrapper">
+          <!-- This example requires Tailwind CSS v2.0+ -->
+        <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+          <div class="flex items-end justify-center min-h-screen pt-4 pb-20 text-center sm:block sm:p-0">
+            <!--
+              Background overlay, show/hide based on modal state.
+
+              Entering: "ease-out duration-300"
+                From: "opacity-0"
+                To: "opacity-100"
+              Leaving: "ease-in duration-200"
+                From: "opacity-100"
+                To: "opacity-0"
+            -->
+            <div @click="closeStaffEdit();closeWarehouseEdit()" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+            <!-- This element is to trick the browser into centering the modal contents. -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!--
+              Modal panel, show/hide based on modal state.
+
+              Entering: "ease-out duration-300"
+                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                To: "opacity-100 translate-y-0 sm:scale-100"
+              Leaving: "ease-in duration-200"
+                From: "opacity-100 translate-y-0 sm:scale-100"
+                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            -->
+            <div class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+              <div class="edit-title w-full px-8 pt-6 text-3xl">
+                [[ currentWidgetTitle ]]
+              </div>
+              <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                <ul class="flex flex-wrap -mb-px" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+                <li
+                  v-for="t in editTabs"
+                  class="mr-2" role="presentation">
+                <button
+                  @click="tabClick($event)"
+                  class="inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                  id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"> [[ t ]] </button>
+                </li>
+                
+                </ul>
+                </div>
+              <staff-edit-widget
+                v-if="editWidget.staff.show"
+                :widgetinfo="editWidget.staff"
+                :pvlList="pvl"
+                :user="selfuser0"
+                :employee="current_editing_employee"
+                :ws="Ws"
+                @close-edit="closeStaffEdit"
+                @edit-staff="editStaff"
+              ></staff-edit-widget>
+              <warehouse-edit-widget
+                v-if="editWidget.warehouse.show"
+                :widgetinfo="editWidget.warehouse"
+                :user="selfuser1"
+                :userOnTargetG="userOnTargetG"
+                :w="current_editing_w"
+                :ws="Ws"
+                :gs="Gs"
+                :g="current_w_g"
+                @get-userontargetg="getUserOnTargetG"
+                @close-edit="closeWarehouseEdit"
+                @edit-warehouse="editWarehouse"
+              ></warehouse-edit-widget>
+
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+
+    </div>
+
+    {% endblock %}
+
+    {% block globalwidget %}
+
+    {% endblock globalwidget %}
+
+    {% block footer %} {{ block.super }} {% endblock %}
+
+    {% block endjs %}
+    {{ block.super }}
+    <script src="{% static 'home/main/js/vue.global.js' %}"></script>
+    <script
+      type="text/javascript"
+      src="{% static 'gallery/manage/js/widget.js' %}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'gallery/manage/js/manage.js' %}"
+    ></script>
+    {% endblock %}
+
+  </body>
+</html>

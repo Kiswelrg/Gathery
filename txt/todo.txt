@@ -1,0 +1,53 @@
+                                                do not fucking casually delete sql records!!!!!!!
+                                                do not fucking casually delete sql records!!!!!!!
+                                                do not fucking casually delete sql records!!!!!!!
+                                                do not fucking casually delete sql records!!!!!!!
+                                                do not fucking casually delete sql records!!!!!!!
+which reminds u to learn how to do backups for sql
+
+finish up the overall look
+    find proper font
+    svg icons(or css pseudo elements)
+    images
+    clean up 3rd party info/elements in htmls
+
+
+try vue
+    re-implement unknown js files
+    re-implement 3rd party giant css files
+    create real template
+    compress js files/compress js/css files
+
+
+script to backup daily
+set up admin page
+sites' analytics
+
+功能{
+    搜索{
+        artwork
+    }
+    导入/导出表格{
+        artwork/gallery&warehouse
+    }
+    创建展览{
+        选择展品{
+            已有展品
+            借入展品{
+                已借入
+                发起借入请求 to other galleries
+            }
+        }
+        其他信息{
+            名称
+            地点
+            日期和时间段
+            物流信息（单号）{
+                overall
+                单个作品
+            }
+        }
+    }
+}
+
+

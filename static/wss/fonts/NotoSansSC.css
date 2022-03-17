@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Noto';
+    src: url('./Noto_Sans_SC/NotoSansSC-Thin-Alphabetic.woff2') format('woff2'), url('./Noto_Sans_SC/NotoSansSC-Thin-Alphabetic.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto';
+    src: url('./Noto_Sans_SC/NotoSansSC-Regular-Alphabetic.woff2') format('woff2'), url('./Noto_Sans_SC/NotoSansSC-Regular-Alphabetic.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto';
+    src: url('./Noto_Sans_SC/NotoSansSC-Black-Alphabetic.woff2') format('woff2'), url('./Noto_Sans_SC/NotoSansSC-Black-Alphabetic.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto';
+    src: url('./Noto_Sans_SC/NotoSansSC-Bold-Alphabetic.woff2') format('woff2'), url('./Noto_Sans_SC/NotoSansSC-Bold-Alphabetic.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto';
+    src: url('./Noto_Sans_SC/NotoSansSC-Light-Alphabetic.woff2') format('woff2'), url('./Noto_Sans_SC/NotoSansSC-Light-Alphabetic.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto';
+    src: url('./Noto_Sans_SC/NotoSansSC-Medium-Alphabetic.woff2') format('woff2'), url('./Noto_Sans_SC/NotoSansSC-Medium-Alphabetic.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
