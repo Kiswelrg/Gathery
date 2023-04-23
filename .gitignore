@@ -12,6 +12,6 @@ frontend/node_modules/**
 *.pyc
 *~
 __pycache__
-.vscode/
-.history/
+.vscode/*
 *.code-workspace
+upload/*
