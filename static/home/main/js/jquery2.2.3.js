@@ -8298,7 +8298,7 @@ jQuery.extend( {
 
 	ajaxSettings: {
 		url: location.href,
-		type: "GET",
+		method: "GET",
 		isLocal: rlocalProtocol.test( location.protocol ),
 		global: true,
 		processData: true,
@@ -8848,7 +8848,7 @@ jQuery._evalUrl = function( url ) {
 		url: url,
 
 		// Make this explicit, since user can override this through ajaxSetup (#11264)
-		type: "GET",
+		method: "GET",
 		dataType: "script",
 		async: false,
 		global: false,

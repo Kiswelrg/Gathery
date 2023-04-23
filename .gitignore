@@ -5,3 +5,13 @@
 /Roboto.zip
 /db.sqlite3
 /readinglist.txt
+/.DS_Store
+*/migrations/**
+*/__pycache__/**
+frontend/node_modules/**
+*.pyc
+*~
+__pycache__
+.vscode/
+.history/
+*.code-workspace

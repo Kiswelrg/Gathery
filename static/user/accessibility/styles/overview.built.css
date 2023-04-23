@@ -74,9 +74,9 @@ html {
     grid-template-columns: repeat(2, 2fr);
     grid-gap: var(--grid-gutter);
     width: 100%;
-    margin: 76px auto 50px;
     box-sizing: border-box
 }
+/*     margin: 76px auto 50px; */
 
 @media only screen and (max-width: 1068px) {
     .section-tiles-grid .grid-container {

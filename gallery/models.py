@@ -20,6 +20,10 @@ class Artist(models.Model):
     v_factor = models.PositiveIntegerField(default=0)
     areas = models.PositiveIntegerField(default=0)
 
+
+def art_dir_path(instance, filename):
+    return 'gallery/{0}/{1}/art/'.format(instance.warehouse.gallery.galleryId, instance.warehouse.urlCode) + instance.date_add.strftime('%Y/%m/%d/' + filename)
+
 class Art(models.Model):
     ownership_status = [
         ('1', 'gallery property'),
@@ -65,7 +69,7 @@ class Art(models.Model):
         choices=art_status,
         default='1'
     )
-    picture = models.ImageField(blank=True, default='')
+    picture = models.ImageField(upload_to=art_dir_path,blank=True, default='')
     info = models.FileField(blank=True, default='')
 
     # def save(self, *args, **kwargs):

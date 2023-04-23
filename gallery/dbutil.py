@@ -83,7 +83,7 @@ def checkWU(wId, uid):
     except ObjectDoesNotExist:
         return []
 
-def fetchGallery(u, page):
+def fetchGallery(u, page=1):
     try:
         g_bundle = Gallery.objects.filter(staff__id = u).order_by('date_create')[page*10-10:page*10].values('name', 'galleryId')
         return g_bundle

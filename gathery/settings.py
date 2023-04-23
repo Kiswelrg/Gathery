@@ -77,6 +77,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'gathery.wsgi.application'
 
 
@@ -90,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gathery',
         'USER': 'root',
-        'PASSWORD': 'S.tvpwn1iao',
+        'PASSWORD': 'Sitvpwn1iao',
         #'PASSWORD':'mxy980924',
         'HOST': '127.0.0.1',
         'PORT': '3306'
@@ -135,7 +136,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
+MEDIA_URL = '/media/'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [

@@ -118,6 +118,7 @@ def getUserRelation(request):
 
 def getGallery(request, page=1):
     u = request.session.get('uid')
+    page = page if page else 1
     r = fetchGallery(u, page)
     if r == 404:
         raise Http404('1')
@@ -183,7 +184,7 @@ def Search(request, page=1):
         c = {}
     else:
         c = {'g_results': a}
-    return render(request, 'gallery/searchNew.html', c)
+    return render(request, 'gallery/search.html', c)
 
 
 def SearchOld(request, page=1):
@@ -193,7 +194,7 @@ def SearchOld(request, page=1):
         c = {}
     else:
         c = {'g_results': a}
-    return render(request, 'gallery/search.html', c)
+    return render(request, 'gallery/searchOld.html', c)
     
 """ page section end """
 
@@ -313,6 +314,35 @@ def getArt(request):
     res = search[start:end]
     return HttpResponse(json.dumps(res)[:-1] + ', {"artNum" : %d }' % search.count() + ', {"user" : "%s" }]' % request.session['username'])
 
+
+def getArtImage(request):
+    print(request.GET)
+    form_list = [
+                'id',
+                ]
+    try:
+        for i in form_list:
+            a = request.GET[i]
+    except MultiValueDictKeyError:
+        raise Http404('wow u got a 404!?')
+
+    uid = request.session.get('uid')
+    if request.GET['id'] == '':
+        raise Http404('wow u got a 404!2')
+    try:
+        ar = Art.objects.get(id=request.GET['id'])
+    except ObjectDoesNotExist:
+        raise Http404('wow u got a 404!3')
+    if ar.picture == '':
+        raise Http404('wow u got a 404!3')
+
+    a,b = validateGW(ar.warehouse.gallery.galleryId, ar.warehouse.urlCode, uid)
+    if not b:
+        raise Http404(a)
+
+    from django.http import FileResponse
+    return FileResponse(ar.picture)
+    
 
 def crtArt(request):
     return HttpResponse('')
@@ -712,9 +742,9 @@ def editArt(request):
         except ObjectDoesNotExist:
             raise Http404('authentication forbidden')
     print('pri : ', u_pri)
+    from django.core.files import File
     if m == 0 and u_pri & 0b000000000000100:
         w_to = request.POST['w']
-        
         if w_to != '' and w_to != w.urlCode:
             w2 = Warehouse.objects.filter(urlCode = w_to)
             if len(w2) == 0:
@@ -731,15 +761,34 @@ def editArt(request):
         print(p)
         for k,v in p.items():
             setattr(a, k, v)
-        print(a)
+
+        for k,v in request.FILES.items():
+            if v.name.lower().endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                v.name = a.id + '.' + v.name.rpartition('.')[-1]
+                a.picture.delete()
+                a.picture = v
+            else:
+                return HttpResponse('invalid file type')
+            break
         a.save()
     elif m == 1 and u_pri & 0b000000000000010:
         
         p['warehouse'] =  w
         p.pop('id', None)
         a2 = Art.objects.create(**p)
+        for k,v in request.FILES.items():
+            print(k,v)
+            if v.name.lower().endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                v.name = a2.id + '.' + v.name.rpartition('.')[-1]                
+                a2.picture = v
+                a2.save()
+            else:
+                return HttpResponse('invalid file type')
+            break
         print(a2)
     elif m == 2 and u_pri & 0b000000000000100:
+        if a.picture != '':
+            a.picture.delete()
         a.delete()
     
     return HttpResponse('editing a')

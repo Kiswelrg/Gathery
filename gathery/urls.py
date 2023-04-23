@@ -31,8 +31,8 @@ urlpatterns = [
     
 
     #user app
-    path('u/', include('user.urls')),
+    path('u/', include('user.urls', namespace = 'user')),
     
     #gallery app
     path('gallery/', include('gallery.urls', namespace = 'gallery')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

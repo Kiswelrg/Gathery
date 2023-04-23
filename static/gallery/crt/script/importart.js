@@ -19,7 +19,7 @@ $(document).on("click", function(e) {
 function getWarehouse(g) {
   return $.ajax({
     url: "/gallery/getWarehouse/",
-    type: "GET",
+    method: "GET",
     data: {
       gallery: g,
     },
@@ -469,7 +469,7 @@ const importart_app = Vue.createApp({
       };
       let res = await $.ajax({
         url: "/gallery/importarts/",
-        type: "POST",
+        method: "POST",
         data: data,
       }).done(function (data, textStatus, xhr) {
         

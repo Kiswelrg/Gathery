@@ -9,6 +9,7 @@ urlpatterns = [
 	re_path(r'^search/(?:(?P<page>[0-9]{1,3})(?:[&=\w]+)/)?$',views.Search, name = 'search'),
 	re_path(r'^searchold/(?:(?P<page>[0-9]{1,3})(?:[&=\w]+)/)?$',views.SearchOld, name = 'search'),
 	path('getArt/',views.getArt, name = 'get-art'),
+	path('getArtImage/',views.getArtImage, name = 'get-art-image'),
 	path('getUser/', views.getUserRelation, name='get-user'),
 	path('getStaff/',views.getStaff, name = 'get-staff'),
 	path('getWarehouse/',views.getWarehouse, name = 'get-wh'),

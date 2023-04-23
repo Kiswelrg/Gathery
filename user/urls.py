@@ -10,7 +10,7 @@ urlpatterns = [
 	path('regist/',views.signup),
 	path('signin/',views.Signin, name='sign-in'),
 	path('vcode/',views.Vcode),
-	path('login/',views.Login),
+	path('login/',views.Login, name='log-in'),
 	path('logout/',views.Logout),
 	path('token/',views.getToken),
 	#--

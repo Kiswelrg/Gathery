@@ -2170,7 +2170,7 @@ abbr {
 
 .more::before,
 .more::after {
-    content: ""
+    content: "\27AE"
 }
 
 .more-block {

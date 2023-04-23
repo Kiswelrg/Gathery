@@ -18,20 +18,20 @@ function urlParam() {
 function getWarehouse(g) {
   return $.ajax({
     url: "/gallery/getWarehouse/",
-    type: "GET",
+    method: "GET",
     data: {
       csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
       gallery: g,
     },
   });
-}     
+}
 
 function getArt(s) {
   if (urlParam().page != null)
     $("#ArtSearchForm input[name='page']").val(urlParam().page);
   return $.ajax({
     url: $("#ArtSearchForm").attr("action"),
-    type: "GET",
+    method: "GET",
     data: s === undefined || s == "" ? $("#ArtSearchForm").serialize() : s,
   });
 }
@@ -144,21 +144,11 @@ let result_app = {
   },
   data() {
     return {
-      statusname: [
-       '损坏',
-       '在馆藏',
-       '运输中',
-       '出借',
-       '借入',
-       '已售',
-     ],
-
+      statusname: ["损坏", "在馆藏", "运输中", "出借", "借入", "已售"],
     };
   },
-  computed: {
-
-  },
-  emits: ['open-edit'],
+  computed: {},
+  emits: ["open-edit"],
   template: `
     <div class="result" id="result">
     <h2 class="result-summary">{{ artnum }} 搜索结果</h2>
@@ -238,11 +228,12 @@ let result_app = {
   `,
   methods: {
     test() {
-      console.log('1');
-    }
+      console.log("1");
+    },
   },
 };
 
+let a;
 const search_app = Vue.createApp({
   delimiters: ["[[", "]]"],
   data() {
@@ -254,24 +245,16 @@ const search_app = Vue.createApp({
       username: "",
       maxperpage: 20,
       current_editing_art: undefined,
-      editTabs:[
-        'Single',
-        'Batch',
-      ],
+      editTabs: ["Single", "Batch"],
       editWidget: {
-        activeWidget: 'art',
-        art:{
-          show: false,
-          mode: ['update','create'],
-          titles: [
-            'Edit an Art',
-            'Create an Art',
-          ],
+        activeWidget: "art",
+        art: {
+          show: true,
+          mode: ["update", "create"],
+          titles: ["Edit an Art", "Create an Art"],
           activeIndex: 0,
         },
-        
       },
-
     };
   },
   computed: {
@@ -290,35 +273,34 @@ const search_app = Vue.createApp({
     },
   },
   methods: {
-    async editArt(d) {
-
-    },
     async fetchGallery() {
       let data = {
         csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
       };
       let res = await $.ajax({
         url: "/gallery/getGallery/",
-        type: "GET",
+        method: "GET",
         data: data,
       })
-        .done(function (data, textStatus, xhr) {
-        })
+        .done(function (data, textStatus, xhr) {})
         .fail(function (jqXHR, textStatus, errorThrown) {
           console.log(jqXHR.status);
         });
       let d = "[" + res.replaceAll("}{", "},{").replaceAll("'", '"') + "]";
       this.gs = JSON.parse(d);
     },
-    async getUser(o) { // 0 for staff, 1 for w
+    async getUser(o) {
+      // 0 for staff, 1 for w
       let data = {
         csrfmiddlewaretoken: await this.getToken(),
-        g: o?$("#warehouse-manage li.selected").attr("gid"):$("#staff-manage li.selected").attr("gid"),
-        m: 'wu'
+        g: o
+          ? $("#warehouse-manage li.selected").attr("gid")
+          : $("#staff-manage li.selected").attr("gid"),
+        m: "wu",
       };
       let res = await $.ajax({
         url: "/gallery/getUser/",
-        type: "GET",
+        method: "GET",
         data: data,
       })
         .done(function (data, textStatus, xhr) {
@@ -328,14 +310,13 @@ const search_app = Vue.createApp({
         .fail(function (jqXHR, textStatus, errorThrown) {
           console.log(jqXHR.status);
         });
-      if (o)
-        this.selfuser1 = JSON.parse(res);
-      else
-        this.selfuser0 = JSON.parse(res);
+      if (o) this.selfuser1 = JSON.parse(res);
+      else this.selfuser0 = JSON.parse(res);
     },
     openArtEdit(a, o) {
+      if (a) this.fetchAImage(a.id);
       this.current_editing_art = a;
-      this.editWidget.activeWidget = 'art';
+      this.editWidget.activeWidget = "art";
       this.editWidget.art.show = true;
       this.editWidget.art.activeIndex = o;
     },
@@ -353,13 +334,15 @@ const search_app = Vue.createApp({
         "hover:border-green-600",
         "dark:hover:text-green-500",
         "dark:hover:border-green-500",
-      ]
-      active_tab_class = '';
+      ];
+      active_tab_class = "";
       for (cls of c) {
-        active_tab_class += (cls + ' ');
+        active_tab_class += cls + " ";
       }
       if (t.hasClass(active_tab_class)) return false;
-      $('[role="tablist"] .text-green-600.border-green-600').removeClass(active_tab_class);
+      $('[role="tablist"] .text-green-600.border-green-600').removeClass(
+        active_tab_class
+      );
       t.addClass(active_tab_class);
       return true;
     },
@@ -397,6 +380,32 @@ const search_app = Vue.createApp({
         this.as = d.slice(0, -2);
       }
     },
+    async fetchAImage(id) {
+      console.log('fetching image for ' + id);
+      await $.ajax({
+        url: "/gallery/getArtImage/",
+        method: "GET",
+        xhrFields: {
+          responseType: 'blob'
+        },
+        data: {
+          id: id,
+        },
+      })
+        .done( (data, textStatus, xhr) => {
+          // data.blob();
+          // let url = URL.createObjectURL(d);
+          for (a of this.as) {
+            if (a['id'] == id)
+              a.picture = data;
+          }
+          // URL.revokeObjectURL(downloadUrl);
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR.status);
+        });
+      
+    },
     async checkFetchW(e) {
       tgt = $(e.target);
       p = tgt.parents().eq(2);
@@ -408,7 +417,7 @@ const search_app = Vue.createApp({
     async getToken() {
       let res = await $.ajax({
         url: "/u/token/",
-        type: "GET",
+        method: "GET",
       })
         .done(function (data, textStatus, xhr) {
           return data;
@@ -419,25 +428,27 @@ const search_app = Vue.createApp({
       return res;
     },
     async editArt(d) {
-      d['csrfmiddlewaretoken'] = await this.getToken();
-      console.log(d);
+      let t = await this.getToken();
+      console.log(t);
+      d.append("csrfmiddlewaretoken", t);
       let res = await $.ajax({
         url: "/gallery/editArt/",
-        type: "POST",
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: "POST",
         data: d,
       })
-        .done(function (data, textStatus, xhr) {
-          
-        })
+        .done(function (data, textStatus, xhr) {})
         .fail(function (jqXHR, textStatus, errorThrown) {
           console.log(jqXHR.status);
         });
-      if (res == 'editing a')
-        this.fetchA();
+      console.log(res);
+      if (res == "editing a") this.fetchA();
       this.closeArtEdit();
     },
   },
-  
+
   async mounted() {
     // const urlParams = new URLSearchParams(window.location.search);
     this.fetchGallery();
@@ -453,4 +464,3 @@ search_app
   .component("art-edit-widget", art_edit_widget);
 
 let vm = search_app.mount("#search-pane");
-

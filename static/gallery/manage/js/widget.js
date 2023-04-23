@@ -12,7 +12,7 @@ const clickOutside = {
   },
 };
 
-let b;
+
 let staff_edit_widget = {
   directives: {clickOutside},
   name: "staff-edit-widget",
@@ -866,6 +866,7 @@ let warehouse_edit_widget = {
     `,
 };
 
+let art_variable;
 let art_edit_widget = {
   directives: {clickOutside},
   name: "art-edit-widget",
@@ -895,9 +896,14 @@ let art_edit_widget = {
         0b000000001000000,
         0b000000000001000,
       ],
+      picture_name: '',
+      picture_file: undefined,
     };
   },
   computed: {
+    artPicUrl() {
+      return ((this.art||{}).picture instanceof Blob)? URL.createObjectURL(this.art.picture) : '';
+    },
     canChangeGallery(){
       if (this.user.userontargetg === undefined || this.user.user === undefined) return 0;
       return ( (this.user.user.privilege&0b000000000100000) && (this.user.userontargetg.privilege&0b000000000010000) )
@@ -913,6 +919,12 @@ let art_edit_widget = {
     }
   },
   methods: {
+    clearImgInput() {
+      $('input#picture').val('');
+      $('img#picture-preview-img').attr('src',this.artPicUrl);
+      this.picture_file = undefined;
+      this.picture_name = '';
+    },
     toggleDropdown(e) {
       let tgt = $(e.target).next();
       if (!tgt.hasClass("opacity-100")) {
@@ -962,7 +974,7 @@ let art_edit_widget = {
       return ($("#g-selector li.selected").length) && 1;
     },
     formData(m) {
-      return {
+      d = {
         m: m,
         w: (m!=2 && ($("#w-selector li.selected").length)) ? $("#w-selector li.selected").attr('wid') : '',
         info: JSON.stringify({
@@ -973,8 +985,28 @@ let art_edit_widget = {
           date_add: $('input#date_add').val(),
         }),
       }
-
-    }
+      var form_data = new FormData();
+      for ( var v in d ) {
+        form_data.append(v, d[v]);
+      }
+      if (m === 2 || this.picture_file === undefined) return form_data;
+      form_data.append('picture', this.picture_file);
+      return form_data;
+    },
+    readImage(e) {
+      let f = e.target.files;
+      if (FileReader && f && f.length) {
+        art_variable = this.picture_file;
+        this.picture_file = f[0];
+        this.picture_name = f[0].name;
+        var fr = new FileReader();
+        fr.onload = function () {
+            document.getElementById('picture-preview-img').src = fr.result;
+        }
+        fr.readAsDataURL(f[0]);
+      }
+    },
+    
   },
   mounted() {
   },
@@ -1037,26 +1069,75 @@ let art_edit_widget = {
         
         <div class="edit-form py-4">
 
-            <div class="my-2">
-              <label for="price" class="block text-sm font-medium text-gray-700"
-                >Name</label
+          <div class="my-2">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Picture</label
+            >
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
               >
-              <div class="mt-1 relative rounded-md shadow-sm">
-                <div
-                  class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                <span class="text-gray-500 sm:text-sm"> </span>
+              </div>
+
+              <div class="file has-name is-fullwidth ">
+                <label class="file-label text-sm">
+                  <input type="file" accept="image/png, image/jpg, image/jpeg, image/webp"
+                    @change="readImage($event)"
+                    name="picture"
+                    id="picture"
+                    class="file-input"
+                    placeholder=""
+                  />
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span v-if="!picture_file" class="file-label">
+                      Choose Image…
+                    </span>
+                    <span v-else class="file-label">
+                      Image :
+                    </span>
+                  </span>
+                  <span class="file-name">
+                  {{ picture_name }}
+                  <button
+                    @click="clearImgInput()"
+                    class="mx-auto my-0 top-0 h-full border-solid absolute right-0 px-2 py-auto border-l border-gray-300">Cancel</button>
+                  </span>
+                </label>
+              </div>
+
+              <div class="w-full">
+                <img
+                  class="mx-auto h-24"
+                  id="picture-preview-img"
+                  :src="artPicUrl"
                 >
-                  <span class="text-gray-500 sm:text-sm"> </span>
-                </div>
-                <input
-                  type="text"
-                  name="a-name"
-                  id="a-name"
-                  class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 pr-12 sm:text-sm border-gray-300 rounded-md"
-                  placeholder=""
-                />  
-                
               </div>
             </div>
+          </div>
+          <div class="my-2">
+            <label for="price" class="block text-sm font-medium text-gray-700"
+              >Name</label
+            >
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+              >
+                <span class="text-gray-500 sm:text-sm"> </span>
+              </div>
+              <input
+                type="text"
+                name="a-name"
+                id="a-name"
+                class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 pr-12 sm:text-sm border-gray-300 rounded-md"
+                placeholder=""
+              />  
+              
+            </div>
+          </div>
 
           <div class="flex items-baseline">
           

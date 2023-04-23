@@ -61,6 +61,7 @@ def loginContent(request):
     return render(request,'loginc.html')
     
 def Login(request):
+    print('处理登录表单')
     if request.method == "POST":
         if request.POST.get('username') != '' and request.POST.get('pwd') != '' and request.POST.get('vcode') != '':
             u = request.POST.get('username')
@@ -74,10 +75,12 @@ def Login(request):
                     if pwd_hash == hashlib.sha256((password + 'vr').encode('utf-8')).hexdigest():
                         request.session["username"] = u
                         request.session["uid"] = get_user.id
-                        print('wish: ' + request.GET.get('wish'))
                         if request.GET.get('wish') is None:
+                            print('回主页')
                             return HttpResponseRedirect('/')
                         else:
+                            print('去之前点的页面')
+                            print('wish: ' + request.GET.get('wish'))
                             return HttpResponseRedirect(request.GET.get('wish'))
                     else:
                         return HttpResponseRedirect(reverse('user:sign-in') + '?username=0')
@@ -119,7 +122,9 @@ def Vcode(request):
         nums.append(chr(i)) 
     #大写英文字母
     for i in range(65,91):
-        nums.append(chr(i))  
+        nums.append(chr(i))
+
+    nums = [n for n in  nums if n not in '0Ol']
 
     code_str = ""
     for i in range(4):
@@ -127,7 +132,6 @@ def Vcode(request):
     request.session["code"] = code_str.lower()
     
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    print(os.path.join(BASE_DIR, 'static') + '/wss/Chalkboard.ttc')
     font_family =  ImageFont.truetype(os.path.join(BASE_DIR, 'static') + '/wss/Chalkboard.ttc',25)   
     font_color=(255,random.randrange(0,255),random.randrange(0,255))
     draw.text((5,0),text=code_str[0],font=font_family,fill=font_color)

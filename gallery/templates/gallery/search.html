@@ -1,57 +1,33 @@
-<!DOCTYPE html>
-<html style="background-color: #fafafa" dir="ltr" lang="zh" meta>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=yes"
-    />
-    <title>Search Artwork</title>
-    {% load static %}
-    <script defer src="{% static 'home/main/js/fontawesome.js' %}"></script>
-    <script
-      type="text/javascript"
-      src="{% static 'home/main/js/jquery.js' %}"
-    ></script>
-    <link rel="stylesheet" href="{% static '/wss/fonts/NotoSansSC.css' %}" />
+{% extends "main_user.html" %}
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'home/main/css/green.css' %}"
-    />
+<!DOCTYPE html>
+<html style="background-color: #fafafa" dir="ltr" lang="zh">
+  <head>
+    {% block head_content %} {{ block.super }} {% endblock %}
+
+    <title>{% block title %}Manage Gallery{% endblock %}</title>
+
+    {% load static %}
+
+    {% block cdnjs %}
+    {{ block.super }}
+
+    {% endblock %}
+
+    {% block globalcss %}
+    <link rel="stylesheet" href="{% static '/wss/fonts/NotoSansSC.css' %}" />
     <link
       rel="stylesheet"
       type="text/css"
       href="{% static 'home/main/css/site-built.css' %}"
     />
+    {{ block.super }}
+    
+    
+    {% endblock %}
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'home/globalnav/1/zh_CN/style/cc-globalnav.built.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'home/globalfooter/style/cc-globalfooter.built.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'home/main/css/tailwind.min.css' %}"
-    />
-
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'home/module/styles/home.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'home/module/styles/localnav.css' %}"
-    />
+    {% block templatecss %}
+    {{ block.super }}
 
     <link
       rel="stylesheet"
@@ -59,1761 +35,1162 @@
       href="{% static '/gallery/localnav/localnav.css' %}"
     />
     <link
+    rel="stylesheet"
+    type="text/css"
+    href="{% static '/gallery/search/style/manage.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'home/main/css/components.css' %}"
+    />
+    <link
       rel="stylesheet"
       type="text/css"
       href="{% static '/gallery/search/style/search.css' %}"
     />
 
-    <style type="text/css"></style>
+    
+    {% endblock %}
+
+    {% block templatescript %}
+    {% endblock %}
+
+    {% block main_font %}
+    {% endblock %}
   </head>
 
-  <body
-    style="
-      --global-nav-ad-bar-height: 0px !important;
-      --global-footer-height: 83px;
-    "
-  >
+  <body style="--global-nav-ad-bar-height: 0px !important">
     <div id="root">
-      <div class="visuallyhidden"></div>
-      <div>
-        <aside
-          id="cc-gn-segmentbar"
-          class="cc-gn-segmentbar"
-          lang="zh-CN"
-          dir="ltr"
-          data-strings="{ 'exit': '退出商店', 'view': '{}商店首页', 'segments': { 'smb': '企业商店首页', 'eduInd': '教育商店首页', 'other': '商店首页' } }"
-        ></aside>
+      {% block globalnav %}
+      {{ block.super }}
+      {% endblock %}
 
-        <input type="checkbox" id="cc-gn-menustate" class="cc-gn-menustate" />
-        <nav
-          id="cc-globalnav"
-          class="no-js globalnav"
-          data-analytics-region="global nav"
-          lang="zh-CN"
-          dir="ltr"
-        >
-          <div class="cc-gn-content">
-            <ul class="cc-gn-header">
-              <li class="cc-gn-item cc-gn-menuicon">
-                <label class="cc-gn-menuicon-label" for="cc-gn-menustate">
-                  <span class="cc-gn-menuicon-bread cc-gn-menuicon-bread-top">
-                    <span
-                      class="cc-gn-menuicon-bread-crust cc-gn-menuicon-bread-crust-top"
-                    ></span>
-                  </span>
-                  <span
-                    class="cc-gn-menuicon-bread cc-gn-menuicon-bread-bottom"
-                  >
-                    <span
-                      class="cc-gn-menuicon-bread-crust cc-gn-menuicon-bread-crust-bottom"
-                    ></span>
-                  </span>
-                </label>
-                <a
-                  href="#cc-gn-menustate"
-                  class="cc-gn-menuanchor cc-gn-menuanchor-open"
-                  id="cc-gn-menuanchor-open"
-                >
-                  <span class="cc-gn-menuanchor-label"
-                    >Global Nav 打开菜单</span
-                  >
-                </a>
-                <a
-                  href="#"
-                  class="cc-gn-menuanchor cc-gn-menuanchor-close"
-                  id="cc-gn-menuanchor-close"
-                >
-                  <span class="cc-gn-menuanchor-label"
-                    >Global Nav 关闭菜单</span
-                  >
-                </a>
-              </li>
+      <div dir class="app-body-container app-body-container-auth">
+        
 
-              <li class="cc-gn-item cc-gn-painthouse">
-                <a
-                  class="cc-gn-link cc-gn-link-painthouse"
-                  href="/"
-                  id="cc-gn-firstfocus-small"
-                >
-                  <span class="cc-gn-link-text">painthouse</span>
-                </a>
-              </li>
+        {% block localnav %}
+        {% with ln_title='Search Arts&nbsp;' %}
+        {{ block.super }}
+        {% endwith %}
+        {% endblock %}
 
-              <li
-                class="cc-gn-item cc-gn-bag cc-gn-bag-small"
-                id="cc-gn-bag-small"
-              >
-                <div class="cc-gn-bag-wrapper">
-                  <a class="cc-gn-link cc-gn-link-bag" href="/cn/shop/goto/bag">
-                    <span class="cc-gn-link-text">购物袋</span>
-                  </a>
-                  <span class="cc-gn-bag-badge">
-                    <span class="cc-gn-bag-badge-separator"></span>
-                    <span class="cc-gn-bag-badge-number"></span>
-                    <span class="cc-gn-bag-badge-unit">+</span>
-                  </span>
-                </div>
-                <span
-                  class="cc-gn-bagview-caret cc-gn-bagview-caret-large"
-                ></span>
-              </li>
-            </ul>
-            <div class="cc-gn-search-placeholder-container">
-              <div class="cc-gn-search cc-gn-search-small">
-                <a
-                  id="cc-gn-link-search-small"
-                  class="cc-gn-link"
-                  href="/search"
-                  aria-label="搜索 painthouse.cn"
-                >
-                  <div class="cc-gn-search-placeholder-bar">
-                    <div class="cc-gn-search-placeholder-input">
-                      <div class="cc-gn-search-placeholder-input-text">
-                        <div
-                          class="cc-gn-link-search cc-gn-search-placeholder-input-icon"
-                        ></div>
-                        <span class="cc-gn-search-placeholder"
-                          >搜索 painthouse.cn</span
-                        >
+        {% block main %}
+        
+        
+        {% endblock %}
+      </div>
+    </div>
+
+    {% block container %}
+    <div class="search-pane" id="search-pane">
+      <div class="left-pane-placeholder"></div>
+      <div class="left-pane">
+        <div class="filters">
+          <div class="panel-title">FILTER</div>
+          <div class="filter-component">
+            <form
+              method="POST"
+              id="ArtSearchForm"
+              action="/gallery/getArt/"
+              autocomplete="off"
+              @submit.prevent="fetchA()"
+            >
+              <input name="page" type="hidden" value="1" />
+              {% csrf_token %}
+              <div>
+                <div class="filter-container1">
+                  <div class="fc-control-p">
+                    <div class="item-bubble"></div>
+                    <div class="fd-l">
+                      <div class="title-placeholder">&nbsp;</div>
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >Search Code as
+                        </span>
+                        <div class="input-opt-wrapper">
+                          <div class="input-cell" style="flex: 1 1 100%">
+                            <input
+                              type="text"
+                              class="si-text"
+                              id=""
+                              name="scode"
+                              maxlength="120"
+                              autocomplete="off"
+                            />
+                            <div class="input-buttons">
+                              <button
+                                class="button is-light"
+                                style="display: none"
+                              >
+                                G
+                              </button>
+                              <button class="button is-light" @click="">
+                                C
+                              </button>
+                              <button class="button is-light">P</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                        </ul>
                       </div>
                     </div>
-                    <div
-                      class="cc-gn-searchview-close cc-gn-searchview-close-small cc-gn-search-placeholder-searchview-close"
-                    >
-                      <span class="cc-gn-searchview-close-cancel">取消</span>
+                  </div>
+                </div>
+                <div class="filter-container1">
+                  <div class="fc-control-p p1" id="fc_gallery">
+                    <div class="item-bubble"></div>
+                    <div class="fd-l has-dropdown">
+                      <div class="title-placeholder">&nbsp;</div>
+                      <div class="fd-title" role="button">
+                        <span
+                          class="input-title form-textbox-label moved fixed"
+                          >Gallery</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <div class="input-cell">
+                            <input
+                              type="text"
+                              class="si-text"
+                              id=""
+                              name="gallery"
+                              maxlength="120"
+                              autocomplete="off"
+                            />
+                            <input
+                              type="hidden"
+                              class="si-text extra-input"
+                              id=""
+                              name="galleryId"
+                              maxlength="20"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          {% for g in g_results %}
+                          <li
+                            role="menuitem"
+                            class="fd-option {% if g is g_results.0 %}fd-option--selected {% endif %}"
+                            gid="{{ g.galleryId }}"
+                          >
+                            {{ g.name }}
+                          </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </a>
+                  <div class="fc-control-p p2" id="fc_warehouse">
+                    <div class="item-bubble"></div>
+                    <div class="fd-l has-dropdown">
+                      <div class="title-placeholder">&nbsp;</div>
+                      <div class="fd-title" role="button">
+                        <span
+                          class="input-title form-textbox-label moved fixed"
+                          >Warehouse</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <div
+                            class="input-cell"
+                            aria-2bload="1"
+                            @click="checkFetchW($event)"
+                          >
+                            <input
+                              type="text"
+                              class="si-text"
+                              id=""
+                              name="warehouse"
+                              maxlength="120"
+                              autocomplete="off"
+                            />
+                            <input
+                              type="hidden"
+                              class="si-text extra-input"
+                              id=""
+                              name="whId"
+                              maxlength="20"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            :key="w.w_id"
+                            v-for="w in ws"
+                            role="menuitem"
+                            class="fd-option"
+                            :w_id="w.w_id"
+                          >
+                            [[ w.name ]]
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-container1">
+                  <div class="fc-control-p p1">
+                    <div class="item-bubble"></div>
+                    <div class="fd-l">
+                      <div class="title-placeholder">&nbsp;</div>
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >Name by</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <div class="input-cell">
+                            <input
+                              type="text"
+                              class="si-text"
+                              id=""
+                              name="name"
+                              maxlength="120"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="fc-control-p p2">
+                    <div class="item-bubble"></div>
+                    <div class="fd-l">
+                      <div class="title-placeholder">&nbsp;</div>
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >Id by</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <div class="input-cell">
+                            <input
+                              type="text"
+                              class="si-text"
+                              id="testicon"
+                              name="id"
+                              maxlength="120"
+                              autocomplete="off"
+                            />
+                          </div>
+                          <button
+                            class="--icon-range"
+                            type="button"
+                            aria-label="搜索范围"
+                          ></button>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-container1 items-end">
+                  <div class="fc-control-p p1">
+                    <div class="item-bubble"></div>
+                    <div class="fd-l has-dropdown">
+                      <div class="title-placeholder">&nbsp;</div>
+                      <div class="fd-title" role="button">
+                        <span
+                          class="input-title form-textbox-label moved fixed"
+                          >Status</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <div class="input-cell">
+                            <input
+                              type="text"
+                              class="si-text"
+                              id=""
+                              name="status"
+                              maxlength="120"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            在库
+                          </li>
+                          <li role="menuitem" class="fd-option">损坏</li>
+                          <li role="menuitem" class="fd-option">运输</li>
+                          <li role="menuitem" class="fd-option">出借</li>
+                          <li role="menuitem" class="fd-option">借入</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            已售
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fc-control-p p2">
+                    <div class="item-bubble"></div>
+                    <div class="fd-l">
+                      <div class="title-placeholder">&nbsp;</div>
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label moved"
+                          >Date add</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <input
+                            type="date"
+                            class="si-text"
+                            id=""
+                            name="date_add"
+                            maxlength="120"
+                            autocomplete="off"
+                          />
+                          <input type="hidden" name="da_opt" value="0" />
+
+                          <button
+                            class="icon-range"
+                            type="button"
+                            date_opt="0"
+                            aria-label="搜索范围"
+                          ></button>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-container1 items-end">
+                  <div class="fc-control-p p1">
+                    <div class="item-bubble"></div>
+                    <div class="fd-l">
+                      <div class="title-placeholder">&nbsp;</div>
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >Artist by</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <div class="input-cell">
+                            <input
+                              type="text"
+                              class="si-text"
+                              id=""
+                              name="artist"
+                              maxlength="120"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="fc-control-p p2">
+                    <div class="item-bubble"></div>
+                    <div class="fd-l">
+                      <div class="title-placeholder">&nbsp;</div>
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label moved"
+                          >Date made</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <input
+                            type="date"
+                            class="si-text"
+                            id=""
+                            name="date_made"
+                            maxlength="120"
+                            autocomplete="off"
+                          />
+                          <input type="hidden" name="dm_opt" value="0" />
+                          <button
+                            class="icon-range"
+                            type="button"
+                            date_opt="0"
+                            aria-label="搜索范围"
+                          ></button>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="filter-container1">
+                  <div class="fc-control-p">
+                    <div class="item-bubble"></div>
+                    <div class="fd-l">
+                      <div class="title-placeholder">&nbsp;</div>
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >Tag selection with</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <div class="input-cell" style="flex: 1 1 100%">
+                            <input
+                              type="text"
+                              class="si-text"
+                              id=""
+                              name="tags"
+                              maxlength="120"
+                              autocomplete="off"
+                            />
+                            <div class="input-buttons">
+                              <button class="button is-light">🡨</button>
+                              <button class="button is-light">🗙</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fc-button-container">
+                <button class="button is-light" type="button">Load</button>
+                <button class="button is-light" type="button">
+                  Publish
+                </button>
+                <button class="button is-light is-clear" type="button">
+                  Clear
+                </button>
+                <button class="button is-light" type="submit" id="asSbm">
+                  Search
+                </button>
+              </div>
+
+              <div class="fc-button-container">
+                <button
+                  @click="openArtEdit(undefined, 1)"
+                  class="self-end button is-success is-light mb-4" style="align-items: center;">
+                  Add an Art 
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <section class="search">
+        <aside class="loading-container">
+          <figure class="loading-container-icon">
+            <svg
+              viewBox="0 0 60 60"
+              height="100%"
+              width="100%"
+              y="0px"
+              x="0px"
+              focusable="false"
+            >
+              <g id="loader">
+                <circle
+                  id="loader-circle"
+                  fill="none"
+                  stroke="#e3e3e3"
+                  stroke-width="5px"
+                  cx="30"
+                  cy="30"
+                  r="25"
+                ></circle>
+                <circle
+                  id="loader-progress"
+                  fill="none"
+                  stroke="#0070c9"
+                  stroke-width="3px"
+                  cx="30"
+                  cy="30"
+                  r="25"
+                ></circle>
+              </g>
+            </svg>
+          </figure>
+        </aside>
+
+        <div class="search-content">
+          <div class="filter-bar">
+            <div class="filter-content">
+              <div class="fc-item fc-head">
+                <div class="fc-icon">
+                  <span class="icon icon-filter"></span>
+                </div>
+                <span class="fc-label">筛选</span>
+              </div>
+
+              <div class="fc-item fc-control" style="display: none">
+                <ul class="fc-control-list">
+                  <li class="fc-control-placeholder">
+                    <div class="fd fd--initial-state">
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >画廊</span
+                        >
+                        <input
+                          type="text"
+                          class="si-text"
+                          id=""
+                          name="username"
+                          maxlength="120"
+                          autocomplete="off"
+                        />
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple Arcade
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple TV+
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="fc-control-placeholder">
+                    <div class="fd fd--initial-state">
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >库房</span
+                        >
+                        <input
+                          type="text"
+                          class="si-text"
+                          id=""
+                          name="username"
+                          maxlength="120"
+                          autocomplete="off"
+                        />
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple Arcade
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple TV+
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="fc-control-placeholder">
+                    <div class="fd fd--initial-state">
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >名称</span
+                        >
+                        <input
+                          type="text"
+                          class="si-text"
+                          id=""
+                          name="username"
+                          maxlength="120"
+                          autocomplete="off"
+                        />
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple Arcade
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple TV+
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="fc-control-placeholder">
+                    <div class="fd fd--initial-state">
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >ID</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <div class="input-cell">
+                            <input
+                              type="text"
+                              class="si-text"
+                              id=""
+                              name="username"
+                              maxlength="120"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple Arcade
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple TV+
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="fc-control-placeholder">
+                    <div class="fd fd--initial-state">
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >创作日期</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <input
+                            type="date"
+                            class="si-text"
+                            id=""
+                            name="username"
+                            maxlength="120"
+                            autocomplete="off"
+                          />
+                          <div class="input-status"></div>
+                        </div>
+                      </div>
+
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple Arcade
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple TV+
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="fc-control-placeholder">
+                    <div class="fd fd--initial-state">
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >入库日期</span
+                        >
+                        <div class="input-opt-wrapper">
+                          <input
+                            type="date"
+                            class="si-text"
+                            id=""
+                            name="username"
+                            maxlength="120"
+                            autocomplete="off"
+                          />
+                          <div class="input-status"></div>
+                        </div>
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple Arcade
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple TV+
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="fc-control-placeholder">
+                    <div class="fd fd--initial-state">
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >艺术家</span
+                        >
+                        <input
+                          type="text"
+                          class="si-text"
+                          id=""
+                          name="username"
+                          maxlength="120"
+                          autocomplete="off"
+                        />
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple Arcade
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple TV+
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="fc-control-placeholder">
+                    <div class="fd fd--initial-state">
+                      <div class="fd-title" role="button">
+                        <span class="input-title form-textbox-label"
+                          >状态</span
+                        >
+                        <input
+                          type="text"
+                          class="si-text"
+                          id=""
+                          name="username"
+                          maxlength="120"
+                          autocomplete="off"
+                        />
+                      </div>
+                      <div class="tipline">
+                        <div class="line"></div>
+                      </div>
+                      <div class="fd-content" role="menu">
+                        <ul class="fd-content-list" role="presentation">
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--selected"
+                          >
+                            所有话题
+                          </li>
+                          <li role="menuitem" class="fd-option">配件</li>
+                          <li
+                            role="menuitem"
+                            class="fd-option fd-option--disabled"
+                          >
+                            AirPods
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            App Store
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple Arcade
+                          </li>
+                          <li role="menuitem" class="fd-option">
+                            Apple TV+
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="fc-item fc-switch">
+                
               </div>
             </div>
-            <ul class="cc-gn-list">
-              <li class="cc-gn-item cc-gn-painthouse">
-                <a
-                  class="cc-gn-link cc-gn-link-painthouse"
-                  href="/"
-                  id="cc-gn-firstfocus"
-                >
-                  <span class="cc-gn-link-text">painthouse</span>
-                </a>
-              </li>
-
-              <li class="cc-gn-item cc-gn-item-menu cc-gn-store">
-                <a
-                  class="cc-gn-link cc-gn-link-store"
-                  href="/cn/shop/goto/store"
-                >
-                  <span class="cc-gn-link-text">商店</span>
-                </a>
-              </li>
-              <li class="cc-gn-item cc-gn-item-menu cc-gn-mac">
-                <a class="cc-gn-link cc-gn-link-mac" href="/mac/">
-                  <span class="cc-gn-link-text">Mac</span>
-                </a>
-              </li>
-              <li class="cc-gn-item cc-gn-item-menu cc-gn-ipad">
-                <a class="cc-gn-link cc-gn-link-ipad" href="/ipad/">
-                  <span class="cc-gn-link-text">iPad</span>
-                </a>
-              </li>
-              <li class="cc-gn-item cc-gn-item-menu cc-gn-iphone">
-                <a class="cc-gn-link cc-gn-link-iphone" href="/iphone/">
-                  <span class="cc-gn-link-text">iPhone</span>
-                </a>
-              </li>
-              <li class="cc-gn-item cc-gn-item-menu cc-gn-watch">
-                <a class="cc-gn-link cc-gn-link-watch" href="/watch/">
-                  <span class="cc-gn-link-text">Watch</span>
-                </a>
-              </li>
-              <li class="cc-gn-item cc-gn-item-menu cc-gn-music">
-                <a class="cc-gn-link cc-gn-link-music" href="/music/">
-                  <span class="cc-gn-link-text">Music</span>
-                </a>
-              </li>
-              <li class="cc-gn-item cc-gn-item-menu cc-gn-support">
-                <a
-                  class="cc-gn-link cc-gn-link-support"
-                  href="https://support.painthouse.cn/zh-cn"
-                >
-                  <span class="cc-gn-link-text">技术支持</span>
-                </a>
-              </li>
-              <li class="cc-gn-item cc-gn-item-menu cc-gn-search">
-                <a
-                  id="cc-gn-link-search"
-                  class="cc-gn-link cc-gn-link-search"
-                  href="/search"
-                  aria-label="搜索 painthouse.cn"
-                ></a>
-              </li>
-              <li class="cc-gn-item cc-gn-bag" id="cc-gn-bag">
-                <div class="cc-gn-bag-wrapper">
-                  <a class="cc-gn-link cc-gn-link-bag" href="/cn/shop/goto/bag">
-                    <span class="cc-gn-link-text">购物袋</span>
-                  </a>
-                  <span class="cc-gn-bag-badge">
-                    <span class="cc-gn-bag-badge-separator"></span>
-                    <span class="cc-gn-bag-badge-number"></span>
-                    <span class="cc-gn-bag-badge-unit">+</span>
-                  </span>
-                </div>
-                <span
-                  class="cc-gn-bagview-caret cc-gn-bagview-caret-large"
-                ></span>
-              </li>
-            </ul>
-
-            <aside id="cc-gn-searchview" class="cc-gn-searchview">
-              <div class="cc-gn-searchview-content">
-                <div class="cc-gn-searchview-bar">
-                  <div class="cc-gn-searchview-bar-wrapper">
-                    <form
-                      id="cc-gn-searchform"
-                      class="cc-gn-searchform"
-                      action="/search"
-                      method="get"
-                    >
-                      <div class="cc-gn-searchform-wrapper">
-                        <input
-                          id="cc-gn-searchform-input"
-                          class="cc-gn-searchform-input"
-                          type="text"
-                          aria-label="搜索 painthouse.cn"
-                          placeholder="搜索 painthouse.cn"
-                          autocorrect="off"
-                          autocapitalize="off"
-                          autocomplete="off"
-                          spellcheck="false"
-                          aria-owns="quicklinks suggestions"
-                        />
-                        <input
-                          id="cc-gn-searchform-src"
-                          type="hidden"
-                          name="src"
-                          value="globalnav"
-                        />
-                        <button
-                          id="cc-gn-searchform-submit"
-                          class="cc-gn-searchform-submit"
-                          type="submit"
-                          disabled=""
-                        ></button>
-                        <button
-                          id="cc-gn-searchform-reset"
-                          class="cc-gn-searchform-reset"
-                          type="reset"
-                          disabled=""
-                        >
-                          <span
-                            class="cc-gn-searchform-reset-background"
-                          ></span>
-                        </button>
-                      </div>
-                    </form>
-                    <button
-                      id="cc-gn-searchview-close-small"
-                      class="cc-gn-searchview-close cc-gn-searchview-close-small"
-                    >
-                      <span class="cc-gn-searchview-close-cancel"> 取消 </span>
-                    </button>
-                  </div>
-                </div>
-
-                <aside
-                  id="cc-gn-searchresults"
-                  class="cc-gn-searchresults"
-                ></aside>
-              </div>
-              <button
-                id="cc-gn-searchview-close"
-                class="cc-gn-searchview-close"
-              >
-                <span class="cc-gn-searchview-close-wrapper">
-                  <span class="cc-gn-searchview-close-left"></span>
-                  <span class="cc-gn-searchview-close-right"></span>
-                </span>
-              </button>
-            </aside>
-
-            <aside class="cc-gn-bagview">
-              <div class="cc-gn-bagview-scrim">
-                <span
-                  class="cc-gn-bagview-caret cc-gn-bagview-caret-small"
-                ></span>
-              </div>
-              <div
-                class="cc-gn-bagview-content"
-                id="cc-gn-bagview-content"
-              ></div>
-            </aside>
           </div>
-        </nav>
-        <div class="cc-gn-blur"></div>
-        <div id="cc-gn-curtain" class="cc-gn-curtain"></div>
-        <div id="cc-gn-placeholder" class="cc-nav-placeholder"></div>
-        {% comment %}
-        <script
-          src="{% static '/home/globalnav/1/zh_CN/scripts/cc-globalnav.built.js' %}"
-          type="text/javascript"
-          charset="utf-8"
-        ></script>
-        {% endcomment %}
-      </div>
-      <div dir class="search-page-container">
-        <input type="checkbox" id="cc-ln-menustate" class="cc-ln-menustate" />
 
-        <div
-          id="cc-ln-sticky-placeholder"
-          class="css-sticky cc-ln-sticking"
-        ></div>
-        <nav id="cc-localnav" class="cc-localnav js touch">
-          <div class="cc-ln-wrapper">
-            <div class="cc-ln-background"></div>
-            <div class="cc-ln-content">
-              <div class="cc-ln-title">
-                <a href="/u/login" tabindex="-1">Gallery</a>
-              </div>
-              <div class="cc-ln-menu">
-                <a
-                  href="#cc-ln-menustate"
-                  class="cc-ln-menucta-anchor cc-ln-menucta-anchor-open"
-                  id="cc-ln-menustate-open"
-                  ><span class="cc-ln-menucta-anchor-label">打开菜单</span></a
-                ><a
-                  href="#"
-                  class="cc-ln-menucta-anchor cc-ln-menucta-anchor-close"
-                  id="cc-ln-menustate-close"
-                  ><span class="cc-ln-menucta-anchor-label">关闭菜单</span></a
+          <div class="results">
+            <div class="results-content">
+              <search-result
+                :as="as"
+                :artnum="artNum"
+                :un="username"
+                @open-edit="openArtEdit"
+              ></search-result>
+            </div>
+          </div>
+        </div>
+        <search-pagination
+          :currentpage="currentpage"
+          :pagenum="pagenum"
+        ></search-pagination>
+      </section>
+
+      <div class="right-pane"></div>
+
+      <div
+        v-show="editWidget.art.show"
+        class="edit-widget fixed w-full h-full inset-0"
+      >
+        <div class="edit-wrapper">
+          <!-- This example requires Tailwind CSS v2.0+ -->
+          <div
+            class="fixed z-10 inset-0 overflow-y-auto"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div
+              class="flex items-end justify-center min-h-screen pt-4 pb-20 text-center sm:block sm:p-0"
+            >
+              <!--
+          Background overlay, show/hide based on modal state.
+
+          Entering: "ease-out duration-300"
+            From: "opacity-0"
+            To: "opacity-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100"
+            To: "opacity-0"
+        -->
+              <div
+                @click="closeArtEdit();"
+                class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                aria-hidden="true"
+              ></div>
+
+              <!-- This element is to trick the browser into centering the modal contents. -->
+              <span
+                class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                aria-hidden="true"
+                >&#8203;</span
+              >
+
+              <!--
+          Modal panel, show/hide based on modal state.
+
+          Entering: "ease-out duration-300"
+            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            To: "opacity-100 translate-y-0 sm:scale-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100 translate-y-0 sm:scale-100"
+            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        -->
+              <div
+                class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+              >
+                <div class="edit-title w-full px-8 pt-6 text-3xl">
+                  [[ currentWidgetTitle ]]
+                </div>
+                <div
+                  class="mb-4 border-b border-gray-200 dark:border-gray-700"
                 >
-
-                <div class="cc-ln-menu-tray">
-                  <ul class="cc-ln-menu-items">
-                    <li class="cc-ln-menu-item">
-                      <div class="cc-ln-menu-link nr-sf-content">
-                        <span class="icon icon-search"></span>
-
-                        <form
-                          class="nr-sf"
-                          action="/newsroom/search"
-                          method="get"
-                        >
-                          <div class="nr-sf-wrapper">
-                            <input
-                              value="a"
-                              type="text"
-                              class="nr-sf-input"
-                              placeholder="Newsroom 搜索"
-                              name="q"
-                              autocomplete="off"
-                              autocorrect="off"
-                              autocapitalize="off"
-                              disabled=""
-                            />
-                            <button
-                              class="nr-sf-close icon icon-resetsolid"
-                              type="button"
-                            ></button>
-                          </div>
-                        </form>
-                        <button
-                          class="nr-sf-link"
-                          type="button"
-                          style="pointer-events: all"
-                        >
-                          Newsroom 搜索
-                        </button>
-                      </div>
-                    </li>
-
-                    <li class="cc-ln-menu-item">
-                      <button type="button" class="btn-topics cc-ln-menu-link">
-                        热门话题
-                      </button>
-                    </li>
-
-                    <li class="topics--narrow">
-                      <label for="topics-list" class="topics-label"
-                        >热门话题</label
+                  <ul
+                    class="flex flex-wrap -mb-px"
+                    id="myTab"
+                    data-tabs-toggle="#myTabContent"
+                    role="tablist"
+                  >
+                    <li
+                      v-for="t in editTabs"
+                      class="mr-2"
+                      role="presentation"
+                    >
+                      <button
+                        @click="tabClick($event)"
+                        class="inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        id="profile-tab"
+                        data-tabs-target="#profile"
+                        type="button"
+                        role="tab"
+                        aria-controls="profile"
+                        aria-selected="false"
                       >
-                      <ul id="topics-list" class="topics-list">
-                        <li class="topic-item">
-                          <a href="/newsroom/topics/airpods/" class="topic-link"
-                            ><span lang="en" dir="ltr">AirPods</span></a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a
-                            href="/newsroom/topics/app-store/"
-                            class="topic-link"
-                            ><span lang="en" dir="ltr">App Store</span></a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a
-                            href="/newsroom/topics/apple-arcade/"
-                            class="topic-link"
-                            ><span lang="en" dir="ltr">Apple Arcade</span></a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a
-                            href="/newsroom/topics/apple-tv-plus/"
-                            class="topic-link"
-                            ><span lang="en" dir="ltr">Apple TV+</span></a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a
-                            href="/newsroom/topics/company-news/"
-                            class="topic-link"
-                            >公司新闻</a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a
-                            href="/newsroom/topics/education/"
-                            class="topic-link"
-                            >教育</a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a
-                            href="/newsroom/topics/environment/"
-                            class="topic-link"
-                            >环境责任</a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a href="/newsroom/topics/events/" class="topic-link"
-                            >事件</a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a href="/newsroom/topics/health/" class="topic-link"
-                            >健康</a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a href="/newsroom/topics/ipad/" class="topic-link"
-                            ><span lang="en" dir="ltr">iPad</span></a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a href="/newsroom/topics/iphone/" class="topic-link"
-                            ><span lang="en" dir="ltr">iPhone</span></a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a href="/newsroom/topics/mac/" class="topic-link"
-                            ><span lang="en" dir="ltr">Mac</span></a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a href="/newsroom/topics/music/" class="topic-link"
-                            ><span lang="en" dir="ltr">Music</span></a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a
-                            href="/newsroom/topics/store-news/"
-                            class="topic-link"
-                            >零售店新闻</a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a href="/newsroom/topics/tv/" class="topic-link"
-                            ><span lang="en" dir="ltr">TV</span></a
-                          >
-                        </li>
-                        <li class="topic-item">
-                          <a href="/newsroom/topics/watch/" class="topic-link"
-                            ><span lang="en" dir="ltr">Watch</span></a
-                          >
-                        </li>
-                      </ul>
+                        [[ t ]]
+                      </button>
                     </li>
                   </ul>
                 </div>
-
-                <div class="cc-ln-actions">
-                  <div class="cc-ln-action cc-ln-action-menucta">
-                    <label for="cc-ln-menustate" class="cc-ln-menucta"
-                      ><span class="cc-ln-menucta-chevron"></span
-                    ></label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              id="topics-tray"
-              class="topics--wide"
-              style="max-height: 220px"
-            >
-              <div role="list" class="topics-content col-4">
-                <div class="topic-group">
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/airpods/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      ><span lang="en" dir="ltr">AirPods</span></a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/app-store/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      ><span lang="en" dir="ltr">App Store</span></a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/apple-arcade/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      ><span lang="en" dir="ltr">Apple Arcade</span></a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/apple-tv-plus/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      ><span lang="en" dir="ltr">Apple TV+</span></a
-                    >
-                  </div>
-                </div>
-
-                <div class="topic-group">
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/company-news/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      >公司新闻</a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/education/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      >教育</a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/environment/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      >环境责任</a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/events/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      >事件</a
-                    >
-                  </div>
-                </div>
-
-                <div class="topic-group">
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/health/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      >健康</a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/ipad/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      ><span lang="en" dir="ltr">iPad</span></a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/iphone/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      ><span lang="en" dir="ltr">iPhone</span></a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/mac/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      ><span lang="en" dir="ltr">Mac</span></a
-                    >
-                  </div>
-                </div>
-
-                <div class="topic-group">
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/music/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      ><span lang="en" dir="ltr">Music</span></a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/store-news/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      >零售店新闻</a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/tv/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      ><span lang="en" dir="ltr">TV</span></a
-                    >
-                  </div>
-
-                  <div role="listitem" class="topic-item">
-                    <a
-                      href="/newsroom/topics/watch/"
-                      class="topic-link"
-                      data-original-tabindex=""
-                      ><span lang="en" dir="ltr">Watch</span></a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-        <label
-          id="cc-ln-curtain"
-          class="cc-ln-curtain"
-          for="cc-ln-menustate"
-        ></label>
-
-        <div class="search-pane" id="search-pane">
-          <div class="left-pane-placeholder"></div>
-          <div class="left-pane">
-            <div class="filters">
-              <div class="panel-title">FILTER</div>
-              <div class="filter-component">
-                <form
-                  method="POST"
-                  id="ArtSearchForm"
-                  action="/gallery/getArt/"
-                  autocomplete="off"
-                  @submit.prevent="fetchA()"
-                >
-                  <input name="page" type="hidden" value="1" />
-                  {% csrf_token %}
-                  <div>
-                    <div class="filter-container1">
-                      <div class="fc-control-p">
-                        <div class="item-bubble"></div>
-                        <div class="fd-l">
-                          <div class="title-placeholder">&nbsp;</div>
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >Search Code as
-                            </span>
-                            <div class="input-opt-wrapper">
-                              <div class="input-cell" style="flex: 1 1 100%">
-                                <input
-                                  type="text"
-                                  class="si-text"
-                                  id=""
-                                  name="scode"
-                                  maxlength="120"
-                                  autocomplete="off"
-                                />
-                                <div class="input-buttons">
-                                  <button
-                                    class="button is-light"
-                                    style="display: none"
-                                  >
-                                    G
-                                  </button>
-                                  <button class="button is-light" @click="">
-                                    C
-                                  </button>
-                                  <button class="button is-light">P</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="filter-container1">
-                      <div class="fc-control-p p1" id="fc_gallery">
-                        <div class="item-bubble"></div>
-                        <div class="fd-l has-dropdown">
-                          <div class="title-placeholder">&nbsp;</div>
-                          <div class="fd-title" role="button">
-                            <span
-                              class="input-title form-textbox-label moved fixed"
-                              >Gallery</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <div class="input-cell">
-                                <input
-                                  type="text"
-                                  class="si-text"
-                                  id=""
-                                  name="gallery"
-                                  maxlength="120"
-                                  autocomplete="off"
-                                />
-                                <input
-                                  type="hidden"
-                                  class="si-text extra-input"
-                                  id=""
-                                  name="galleryId"
-                                  maxlength="20"
-                                  autocomplete="off"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              {% for g in g_results %}
-                              <li
-                                role="menuitem"
-                                class="fd-option {% if g is g_results.0 %}fd-option--selected {% endif %}"
-                                gid="{{ g.galleryId }}"
-                              >
-                                {{ g.name }}
-                              </li>
-                              {% endfor %}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="fc-control-p p2" id="fc_warehouse">
-                        <div class="item-bubble"></div>
-                        <div class="fd-l has-dropdown">
-                          <div class="title-placeholder">&nbsp;</div>
-                          <div class="fd-title" role="button">
-                            <span
-                              class="input-title form-textbox-label moved fixed"
-                              >Warehouse</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <div
-                                class="input-cell"
-                                aria-2bload="1"
-                                @click="checkFetchW($event)"
-                              >
-                                <input
-                                  type="text"
-                                  class="si-text"
-                                  id=""
-                                  name="warehouse"
-                                  maxlength="120"
-                                  autocomplete="off"
-                                />
-                                <input
-                                  type="hidden"
-                                  class="si-text extra-input"
-                                  id=""
-                                  name="whId"
-                                  maxlength="20"
-                                  autocomplete="off"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                :key="w.w_id"
-                                v-for="w in ws"
-                                role="menuitem"
-                                class="fd-option"
-                                :w_id="w.w_id"
-                              >
-                                [[ w.name ]]
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="filter-container1">
-                      <div class="fc-control-p p1">
-                        <div class="item-bubble"></div>
-                        <div class="fd-l">
-                          <div class="title-placeholder">&nbsp;</div>
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >Name by</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <div class="input-cell">
-                                <input
-                                  type="text"
-                                  class="si-text"
-                                  id=""
-                                  name="name"
-                                  maxlength="120"
-                                  autocomplete="off"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="fc-control-p p2">
-                        <div class="item-bubble"></div>
-                        <div class="fd-l">
-                          <div class="title-placeholder">&nbsp;</div>
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >Id by</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <div class="input-cell">
-                                <input
-                                  type="text"
-                                  class="si-text"
-                                  id="testicon"
-                                  name="id"
-                                  maxlength="120"
-                                  autocomplete="off"
-                                />
-                              </div>
-                              <button
-                                class="--icon-range"
-                                type="button"
-                                aria-label="搜索范围"
-                              ></button>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="filter-container1">
-                      <div class="fc-control-p p1">
-                        <div class="item-bubble"></div>
-                        <div class="fd-l has-dropdown">
-                          <div class="title-placeholder">&nbsp;</div>
-                          <div class="fd-title" role="button">
-                            <span
-                              class="input-title form-textbox-label moved fixed"
-                              >Status</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <div class="input-cell">
-                                <input
-                                  type="text"
-                                  class="si-text"
-                                  id=""
-                                  name="status"
-                                  maxlength="120"
-                                  autocomplete="off"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                在库
-                              </li>
-                              <li role="menuitem" class="fd-option">损坏</li>
-                              <li role="menuitem" class="fd-option">运输</li>
-                              <li role="menuitem" class="fd-option">出借</li>
-                              <li role="menuitem" class="fd-option">借入</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                已售
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="fc-control-p p2">
-                        <div class="item-bubble"></div>
-                        <div class="fd-l">
-                          <div class="title-placeholder">&nbsp;</div>
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label moved"
-                              >Date add</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <input
-                                type="date"
-                                class="si-text"
-                                id=""
-                                name="date_add"
-                                maxlength="120"
-                                autocomplete="off"
-                              />
-                              <input type="hidden" name="da_opt" value="0" />
-
-                              <button
-                                class="icon-range"
-                                type="button"
-                                date_opt="0"
-                                aria-label="搜索范围"
-                              ></button>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="filter-container1">
-                      <div class="fc-control-p p1">
-                        <div class="item-bubble"></div>
-                        <div class="fd-l">
-                          <div class="title-placeholder">&nbsp;</div>
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >Artist by</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <div class="input-cell">
-                                <input
-                                  type="text"
-                                  class="si-text"
-                                  id=""
-                                  name="artist"
-                                  maxlength="120"
-                                  autocomplete="off"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="fc-control-p p2">
-                        <div class="item-bubble"></div>
-                        <div class="fd-l">
-                          <div class="title-placeholder">&nbsp;</div>
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label moved"
-                              >Date made</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <input
-                                type="date"
-                                class="si-text"
-                                id=""
-                                name="date_made"
-                                maxlength="120"
-                                autocomplete="off"
-                              />
-                              <input type="hidden" name="dm_opt" value="0" />
-                              <button
-                                class="icon-range"
-                                type="button"
-                                date_opt="0"
-                                aria-label="搜索范围"
-                              ></button>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="filter-container1">
-                      <div class="fc-control-p">
-                        <div class="item-bubble"></div>
-                        <div class="fd-l">
-                          <div class="title-placeholder">&nbsp;</div>
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >Tag selection with</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <div class="input-cell" style="flex: 1 1 100%">
-                                <input
-                                  type="text"
-                                  class="si-text"
-                                  id=""
-                                  name="tags"
-                                  maxlength="120"
-                                  autocomplete="off"
-                                />
-                                <div class="input-buttons">
-                                  <button class="button is-light">🡨</button>
-                                  <button class="button is-light">🗙</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="fc-button-container">
-                    <button class="button is-light" type="button">Load</button>
-                    <button class="button is-light" type="button">
-                      Publish
-                    </button>
-                    <button class="button is-light is-clear" type="button">
-                      Clear
-                    </button>
-                    <button class="button is-light" type="submit" id="asSbm">
-                      Search
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <section class="search">
-            <aside class="loading-container">
-              <figure class="loading-container-icon">
-                <svg
-                  viewBox="0 0 60 60"
-                  height="100%"
-                  width="100%"
-                  y="0px"
-                  x="0px"
-                  focusable="false"
-                >
-                  <g id="loader">
-                    <circle
-                      id="loader-circle"
-                      fill="none"
-                      stroke="#e3e3e3"
-                      stroke-width="5px"
-                      cx="30"
-                      cy="30"
-                      r="25"
-                    ></circle>
-                    <circle
-                      id="loader-progress"
-                      fill="none"
-                      stroke="#0070c9"
-                      stroke-width="3px"
-                      cx="30"
-                      cy="30"
-                      r="25"
-                    ></circle>
-                  </g>
-                </svg>
-              </figure>
-            </aside>
-
-            <div class="search-content">
-              <div class="filter-bar">
-                <div class="filter-content">
-                  <div class="fc-item fc-head">
-                    <div class="fc-icon">
-                      <span class="icon icon-filter"></span>
-                    </div>
-                    <span class="fc-label">筛选</span>
-                  </div>
-
-                  <div class="fc-item fc-control" style="display: none">
-                    <ul class="fc-control-list">
-                      <li class="fc-control-placeholder">
-                        <div class="fd fd--initial-state">
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >画廊</span
-                            >
-                            <input
-                              type="text"
-                              class="si-text"
-                              id=""
-                              name="username"
-                              maxlength="120"
-                              autocomplete="off"
-                            />
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple Arcade
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple TV+
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li class="fc-control-placeholder">
-                        <div class="fd fd--initial-state">
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >库房</span
-                            >
-                            <input
-                              type="text"
-                              class="si-text"
-                              id=""
-                              name="username"
-                              maxlength="120"
-                              autocomplete="off"
-                            />
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple Arcade
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple TV+
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li class="fc-control-placeholder">
-                        <div class="fd fd--initial-state">
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >名称</span
-                            >
-                            <input
-                              type="text"
-                              class="si-text"
-                              id=""
-                              name="username"
-                              maxlength="120"
-                              autocomplete="off"
-                            />
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple Arcade
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple TV+
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li class="fc-control-placeholder">
-                        <div class="fd fd--initial-state">
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >ID</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <div class="input-cell">
-                                <input
-                                  type="text"
-                                  class="si-text"
-                                  id=""
-                                  name="username"
-                                  maxlength="120"
-                                  autocomplete="off"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple Arcade
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple TV+
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li class="fc-control-placeholder">
-                        <div class="fd fd--initial-state">
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >创作日期</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <input
-                                type="date"
-                                class="si-text"
-                                id=""
-                                name="username"
-                                maxlength="120"
-                                autocomplete="off"
-                              />
-                              <div class="input-status"></div>
-                            </div>
-                          </div>
-
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple Arcade
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple TV+
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="fc-control-placeholder">
-                        <div class="fd fd--initial-state">
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >入库日期</span
-                            >
-                            <div class="input-opt-wrapper">
-                              <input
-                                type="date"
-                                class="si-text"
-                                id=""
-                                name="username"
-                                maxlength="120"
-                                autocomplete="off"
-                              />
-                              <div class="input-status"></div>
-                            </div>
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple Arcade
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple TV+
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li class="fc-control-placeholder">
-                        <div class="fd fd--initial-state">
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >艺术家</span
-                            >
-                            <input
-                              type="text"
-                              class="si-text"
-                              id=""
-                              name="username"
-                              maxlength="120"
-                              autocomplete="off"
-                            />
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple Arcade
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple TV+
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li class="fc-control-placeholder">
-                        <div class="fd fd--initial-state">
-                          <div class="fd-title" role="button">
-                            <span class="input-title form-textbox-label"
-                              >状态</span
-                            >
-                            <input
-                              type="text"
-                              class="si-text"
-                              id=""
-                              name="username"
-                              maxlength="120"
-                              autocomplete="off"
-                            />
-                          </div>
-                          <div class="tipline">
-                            <div class="line"></div>
-                          </div>
-                          <div class="fd-content" role="menu">
-                            <ul class="fd-content-list" role="presentation">
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--selected"
-                              >
-                                所有话题
-                              </li>
-                              <li role="menuitem" class="fd-option">配件</li>
-                              <li
-                                role="menuitem"
-                                class="fd-option fd-option--disabled"
-                              >
-                                AirPods
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                App Store
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple Arcade
-                              </li>
-                              <li role="menuitem" class="fd-option">
-                                Apple TV+
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="fc-item fc-switch">
-                    <button
-                      @click="openArtEdit(undefined, 1)"
-                      class="self-end button is-success is-light mb-4">Add an Art
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="results">
-                <div class="results-content">
-                  <search-result
-                    :as="as"
-                    :artnum="artNum"
-                    :un="username"
-                  ></search-result>
-                </div>
-              </div>
-            </div>
-            <search-pagination
-              :currentpage="currentpage"
-              :pagenum="pagenum"
-            ></search-pagination>
-          </section>
-
-          <div class="right-pane"></div>
-
-          <div
-            v-show="editWidget.art.show"
-            class="edit-widget fixed w-full h-full inset-0"
-          >
-            <div class="edit-wrapper">
-              <!-- This example requires Tailwind CSS v2.0+ -->
-              <div
-                class="fixed z-10 inset-0 overflow-y-auto"
-                aria-labelledby="modal-title"
-                role="dialog"
-                aria-modal="true"
-              >
-                <div
-                  class="flex items-end justify-center min-h-screen pt-4 pb-20 text-center sm:block sm:p-0"
-                >
-                  <!--
-              Background overlay, show/hide based on modal state.
-
-              Entering: "ease-out duration-300"
-                From: "opacity-0"
-                To: "opacity-100"
-              Leaving: "ease-in duration-200"
-                From: "opacity-100"
-                To: "opacity-0"
-            -->
-                  <div
-                    @click="closeArtEdit();"
-                    class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-                    aria-hidden="true"
-                  ></div>
-
-                  <!-- This element is to trick the browser into centering the modal contents. -->
-                  <span
-                    class="hidden sm:inline-block sm:align-middle sm:h-screen"
-                    aria-hidden="true"
-                    >&#8203;</span
-                  >
-
-                  <!--
-              Modal panel, show/hide based on modal state.
-
-              Entering: "ease-out duration-300"
-                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                To: "opacity-100 translate-y-0 sm:scale-100"
-              Leaving: "ease-in duration-200"
-                From: "opacity-100 translate-y-0 sm:scale-100"
-                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            -->
-                  <div
-                    class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-                  >
-                    <div class="edit-title w-full px-8 pt-6 text-3xl">
-                      Edit xxx
-                    </div>
-                    <div
-                      class="mb-4 border-b border-gray-200 dark:border-gray-700"
-                    >
-                      <ul
-                        class="flex flex-wrap -mb-px"
-                        id="myTab"
-                        data-tabs-toggle="#myTabContent"
-                        role="tablist"
-                      >
-                        <li
-                          v-for="t in editTabs"
-                          class="mr-2"
-                          role="presentation"
-                        >
-                          <button
-                            @click="tabClick($event)"
-                            class="inline-block py-4 px-4 text-sm font-medium text-center text-gray-500 rounded-t-lg border-b-2 hover:text-gray-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
-                            id="profile-tab"
-                            data-tabs-target="#profile"
-                            type="button"
-                            role="tab"
-                            aria-controls="profile"
-                            aria-selected="false"
-                          >
-                            [[ t ]]
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                    <art-edit-widget
-                      v-if="editWidget.art.show"
-                      :art="current_editing_art"
-                      :gs="gs"
-                      @close-edit="closeArtEdit"
-                      @edit-art="editArt"
-                    ></art-edit-widget>
-                  </div>
-                </div>
+                <art-edit-widget
+                  v-if="editWidget.art.show"
+                  :widgetinfo="editWidget.art"
+                  :art="current_editing_art"
+                  :gs="gs"
+                  @close-edit="closeArtEdit"
+                  @edit-art="editArt"
+                ></art-edit-widget>
               </div>
             </div>
           </div>
@@ -1821,86 +1198,17 @@
       </div>
     </div>
 
-    <footer
-      id="cc-globalfooter"
-      class="no-js"
-      lang="en-US"
-      data-analytics-region="global footer"
-    >
-      <div class="cc-gf-content">
-        <h2 class="cc-gf-label" id="cc-gf-label">gatheryFooter</h2>
-        <style>
-          #cc-globalfooter .cc-gf-footer-legal-link:last-child {
-            margin: 3px 0 0 0;
-          }
 
-          #cc-globalfooter .cc-gf-footer {
-            border-top: none;
-          }
-        </style>
-        <section class="cc-gf-footer">
-          <div class="cc-gf-footer-shop" x-ms-format-detection="none">
-            更多选购方式：<a
-              href="/retail/"
-              data-analytics-title="find an gatherystore"
-              >查找你附近的 gatheryStore 零售店</a
-            >及<a
-              href="https://locate.painthouse.cn/cn/zh/"
-              data-analytics-title="other retailers or resellers"
-              >更多门店</a
-            >，
-            <span class="nowrap">或者致电 400-666-8800。</span>
-          </div>
+    {% endblock %}
 
-          <div class="cc-gf-footer-legal">
-            <div class="cc-gf-footer-legal-copyright">
-              Copyright © 2021 gatheryInc. 保留所有权利。
-            </div>
-            <div class="cc-gf-footer-legal-links">
-              <a
-                class="cc-gf-footer-legal-link"
-                href="/legal/privacy/"
-                data-analytics-title="privacy policy"
-                >隐私政策</a
-              >
+    {% block globalwidget %}
 
-              <a
-                class="cc-gf-footer-legal-link"
-                href="/legal/internet-services/terms/site.html"
-                data-analytics-title="terms of use"
-                >使用条款</a
-              >
-              <a
-                class="cc-gf-footer-legal-link"
-                href="/cn/shop/goto/help/sales_refunds"
-                data-analytics-title="sales and refunds"
-                >销售政策</a
-              >
-              <a
-                class="cc-gf-footer-legal-link"
-                href="
-        /legal/"
-                >法律信息</a
-              >
-              <a
-                class="cc-gf-footer-legal-link"
-                href="
-        /sitemap/"
-                data-analytics-title="site map"
-                >网站地图</a
-              >
-            </div>
-          </div>
-        </section>
-      </div>
-    </footer>
-    {% comment %}
-    <script
-      type="text/javascript"
-      src="https:/ac/globalfooter/6/zh_CN/scripts/cc-globalfooter.built.js"
-    ></script>
-    {% endcomment %}
+    {% endblock globalwidget %}
 
+    {% block footer %} {{ block.super }} {% endblock %}
+
+    {% block endjs %}
+    {{ block.super }}
     <script src="{% static 'home/main/js/vue.global.js' %}"></script>
     <script
       type="text/javascript"
@@ -1916,5 +1224,7 @@
       type="text/javascript"
       charset="utf-8"
     ></script>
+    {% endblock %}
+
   </body>
 </html>

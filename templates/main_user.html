@@ -14,14 +14,11 @@
     {% load static %}
     
     {% block cdnjs %}
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"></script>
     {% comment %} <script
       defer
-      src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
-    ></script> {% endcomment %}
-    <script
-      defer
       src="{% static 'home/main/js/fontawesome.js' %}"
-    ></script>
+    ></script> {% endcomment %}
     <script
       type="text/javascript"
       src="{% static 'home/main/js/jquery.js' %}"
@@ -321,7 +318,7 @@
           <li class="cc-gn-item cc-gn-item-menu cc-gn-holder">
             <a
               class="cc-gn-link cc-gn-link-holder"
-              href="/"
+              href="/u/signup/"
               data-analytics-title="mac"
             >
               <span class="cc-gn-link-temp-support cc-gn-link-text-temporary"

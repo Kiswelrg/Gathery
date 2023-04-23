@@ -18,7 +18,7 @@ $(document).on("click", function (e) {
 function getWarehouse(g, m) {
   return $.ajax({
     url: "/gallery/getWarehouse/",
-    type: "GET",
+    method: "GET",
     data: {
       csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
       gallery: g,
@@ -131,7 +131,7 @@ const manage_app = Vue.createApp({
       };
       let res = await $.ajax({
         url: "/gallery/getUser/",
-        type: "GET",
+        method: "GET",
         data: data,
       })
         .done(function (data, textStatus, xhr) {
@@ -153,7 +153,7 @@ const manage_app = Vue.createApp({
       };
       let res = await $.ajax({
         url: "/gallery/getUser/",
-        type: "GET",
+        method: "GET",
         data: data,
       })
         .done(function (data, textStatus, xhr) {
@@ -266,7 +266,7 @@ const manage_app = Vue.createApp({
       };
       let res = await $.ajax({
         url: "/gallery/getStaff/",
-        type: "GET",
+        method: "GET",
         data: data,
       })
         .fail(function (jqXHR, textStatus, errorThrown) {
@@ -289,7 +289,7 @@ const manage_app = Vue.createApp({
       };
       let res = await $.ajax({
         url: "/gallery/getGallery/",
-        type: "GET",
+        method: "GET",
         data: data,
       })
         .done(function (data, textStatus, xhr) {
@@ -306,7 +306,7 @@ const manage_app = Vue.createApp({
     async getToken() {
       let res = await $.ajax({
         url: "/u/token/",
-        type: "GET",
+        method: "GET",
       })
         .done(function (data, textStatus, xhr) {
           return data;
@@ -322,7 +322,7 @@ const manage_app = Vue.createApp({
       console.log(d);
       let res = await $.ajax({
         url: "/gallery/editStaff/",
-        type: "POST",
+        method: "POST",
         data: d,
       })
         .done(function (data, textStatus, xhr) {
@@ -338,7 +338,7 @@ const manage_app = Vue.createApp({
       console.log(d);
       let res = await $.ajax({
         url: "/gallery/editWarehouse/",
-        type: "POST",
+        method: "POST",
         data: d,
       })
         .done(function (data, textStatus, xhr) {

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="jsencrypt.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+  </head>
+  <body>
+    <form action="" method="post">
+      <input type="text" name="username" class="un" hidden/>
+      <input type="password" name="password" class="pwd"/>
+    </br>
+    <textarea name="" id="result" cols="30" rows="10"></textarea>
+    </form>
+    <script>
+      var encrypt = new JSEncrypt();
+      encrypt.setPublicKey(publickKey);
+      $("input.pwd").on('input', function() {
+        $('#result').html(encrypt.encrypt($("input.pwd").val()));
+      });
+      // $.ajax({
+      //   url: "/sso/ssoLogin",
+      //   dataType: "json",
+      //   type: "post",
+      //   data: {
+      //     username: $("input.un").val(),
+      //     password: encrypt.encrypt($("input.pwd").val()),
+      //   },
+      //   success: function (data) {
+      //     if (data.state) {
+
+      //     }
+      //   },
+      //   error: function (jqXHR, textStatus, errorThrown) {
+      //     if (jqXHR.status == 503) {
+      //       $(".err").html("安全机制监测操作异常，您已被限制访问！");
+      //     }
+      //   },
+      // });
+    </script>
+  </body>
+</html>

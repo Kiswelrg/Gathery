@@ -54,7 +54,7 @@ const signin_app = Vue.createApp({
   },
   computed: {
     action() {
-      return this.base_action + '?wish=' + encodeURIComponent(this.wish);
+      return this.wish==''? this.base_action: this.base_action + '?wish=' + encodeURIComponent(this.wish);
     },
   },
   methods: {

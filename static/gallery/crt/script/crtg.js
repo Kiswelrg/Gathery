@@ -87,7 +87,7 @@ const crtg_app = Vue.createApp({
       };
       let res = await $.ajax({
         url: "/gallery/crtgallerys/",
-        type: "POST",
+        method: "POST",
         data: data,
       })
         .done(function (data, textStatus, xhr) {

@@ -64,7 +64,7 @@ const signup_app = Vue.createApp({
       };
       let res = await $.ajax({
         url: "/u/checkid/",
-        type: "GET",
+        method: "GET",
         data: data,
       })
         .done(function (data, textStatus, xhr) {
